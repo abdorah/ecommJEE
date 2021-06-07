@@ -1,5 +1,6 @@
 .vscode/
-target/
+.idea/
+ecomm.iml
 /target/
 .settings/
 .project
