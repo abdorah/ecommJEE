@@ -3,8 +3,8 @@ package com.ecomm.javaBeans;
 import java.util.Date;
 
 public class Commande {
+    
     private int numCde;
-
     private Date dateCde;
 
     public Commande() {

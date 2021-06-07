@@ -1,33 +1,85 @@
-#DROP TABLE famille;
-#DROP TABLE produit;
-#DROP TABLE client;
-#DROP TABLE commande;
-#DROP TABLE procde;
-#DROP TABLE cdecli;
-CREATE TABLE famille (numFam INT PRIMARY KEY,  nomFam VARCHAR(40));
-CREATE TABLE produit (numPro INT PRIMARY KEY, puPro NUMERIC, nomPro VARCHAR (50), famPro INT, FOREIGN KEY (famPro) REFERENCES famille (numFam));
-CREATE TABLE client (numCli INT PRIMARY KEY, nomCli VARCHAR(40), prenomCli VARCHAR(40), adrCli VARCHAR(100), pass VARCHAR(12));
-CREATE TABLE commande (numCde INT PRIMARY KEY, dateCde DATE);
-CREATE TABLE procde (numpro INT, numcde INT, qte INT, PRIMARY KEY(numpro,numcde), FOREIGN KEY (numPro) REFERENCES produit (numPro), FOREIGN KEY (numCde) REFERENCES commande (numCde));
-CREATE TABLE cdecli (numcde INT, numcli INT, PRIMARY KEY (numcde,numcli), FOREIGN KEY (numcli) REFERENCES client (numCli), FOREIGN KEY (numCde) REFERENCES commande (numCde)); 
+-- ecomm.commande definition
+
+CREATE TABLE `commande` (
+  `numCde` int NOT NULL,
+  `dateCde` date DEFAULT NULL,
+  PRIMARY KEY (`numCde`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-INSERT INTO famille VALUES(1,'PDA');
-INSERT INTO famille VALUES(2,'laptop');
+-- ecomm.famille definition
 
-INSERT INTO produit VALUES(1,100.0,'Palm Zire 31',1);
-INSERT INTO produit VALUES(2,149.99,'Palm Zire 71',1);
-INSERT INTO produit VALUES(3,199.99,'Palm Zire 91',1);
-INSERT INTO produit VALUES(4,1499.0,'Dell Latitude D800',2);
-INSERT INTO produit VALUES(5,1599.0,'Dell Latitude X1',2);
-INSERT INTO produit VALUES(6,1699.0,'Dell Latitude D850',2);
+CREATE TABLE `famille` (
+  `numFam` int NOT NULL,
+  `nomFam` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`numFam`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO client VALUES(1,'cure','olivier','5 bd Descartes','toto');
-INSERT INTO client VALUES(2,'davis','miles','6 rue du Jazz','trane');
 
-INSERT INTO commande VALUES(1,'2009-02-02');
+-- ecomm.utiilisateur definition
 
-INSERT INTO procde VALUES (2,1,2);
-INSERT INTO procde VALUES (5,1,2);
+CREATE TABLE `utilisateur` (
+  `numUtil` int NOT NULL,
+  `nomUtil` varchar(100) DEFAULT NULL,
+  `prenomUtil` varchar(100) DEFAULT NULL,
+  `addrUtil` varchar(100) DEFAULT NULL,
+  `passUtil` varchar(100) DEFAULT NULL,
+  `typeCompte` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`numUtil`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO cdecli VALUES (1,1);
+
+-- ecomm.client definition
+
+CREATE TABLE `client` (
+  `numCli` int NOT NULL,
+  PRIMARY KEY (`numCli`),
+  CONSTRAINT `client_FK` FOREIGN KEY (`numCli`) REFERENCES `utiilisateur` (`numUtil`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- ecomm.produit definition
+
+CREATE TABLE `produit` (
+  `numPro` int NOT NULL,
+  `puPro` decimal(10,0) DEFAULT NULL,
+  `nomPro` varchar(50) DEFAULT NULL,
+  `famPro` int DEFAULT NULL,
+  PRIMARY KEY (`numPro`),
+  KEY `famPro` (`famPro`),
+  CONSTRAINT `produit_ibfk_1` FOREIGN KEY (`famPro`) REFERENCES `famille` (`numFam`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- ecomm.administrateur definition
+
+CREATE TABLE `administrateur` (
+  `numAdmin` int NOT NULL,
+  PRIMARY KEY (`numAdmin`),
+  CONSTRAINT `administrateur_FK` FOREIGN KEY (`numAdmin`) REFERENCES `utiilisateur` (`numUtil`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- ecomm.cdecli definition
+
+CREATE TABLE `cdecli` (
+  `numcde` int NOT NULL,
+  `numcli` int NOT NULL,
+  PRIMARY KEY (`numcde`,`numcli`),
+  KEY `numcli` (`numcli`),
+  CONSTRAINT `cdecli_ibfk_1` FOREIGN KEY (`numcli`) REFERENCES `client` (`numCli`),
+  CONSTRAINT `cdecli_ibfk_2` FOREIGN KEY (`numcde`) REFERENCES `commande` (`numCde`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- ecomm.procde definition
+
+CREATE TABLE `procde` (
+  `numpro` int NOT NULL,
+  `numcde` int NOT NULL,
+  `qte` int DEFAULT NULL,
+  PRIMARY KEY (`numpro`,`numcde`),
+  KEY `numcde` (`numcde`),
+  CONSTRAINT `procde_ibfk_1` FOREIGN KEY (`numpro`) REFERENCES `produit` (`numPro`),
+  CONSTRAINT `procde_ibfk_2` FOREIGN KEY (`numcde`) REFERENCES `commande` (`numCde`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

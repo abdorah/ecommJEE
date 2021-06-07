@@ -1,8 +1,8 @@
 package com.ecomm.javaBeans;
 
-public class Client extends Utilisateur {
-
-    public Client() {
+public class Administrateur extends Utilisateur {
+    
+    public Administrateur() {
         super();
     }
 
