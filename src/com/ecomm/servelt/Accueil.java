@@ -32,7 +32,6 @@ public class Accueil extends HttpServlet {
 		} catch (SQLException throwables) {
 			throwables.printStackTrace();
 		}
-
 		this.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 
 	}

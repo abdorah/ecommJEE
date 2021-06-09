@@ -202,7 +202,7 @@
 
 		<div class="row">
 			<c:forEach items="${list}" var="familles" >
-				<a href="<c:url value="http://localhost:8080/ecomm_war_exploded/Produits">
+				<a href="<c:url value="/Produits">
                    <c:param name="familleName" value="${familles.getNomFam()}" />
                   </c:url>">
 			<div class="col-md-4">
