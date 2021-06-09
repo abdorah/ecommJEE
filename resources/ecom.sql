@@ -1,3 +1,8 @@
+-- ecomm preconfiguration
+
+CREATE DATABASE ecomm;
+USE ecomm;
+
 -- ecomm.commande definition
 
 CREATE TABLE `commande` (
