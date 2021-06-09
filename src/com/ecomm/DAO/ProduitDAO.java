@@ -74,4 +74,25 @@ public class ProduitDAO implements ProduitService {
         return produits;
     }
 
+    @Override
+    public boolean addProduit(Produit produit) throws SQLException {
+        String query = "INSERT INTO ecomm.produit(numPro, puPro, nomPro, famPro) VALUES(0, 0, '', 0);";
+        PreparedStatement preStat = connection.prepareStatement(queryCde);
+        preStat.setInt(1, produit.getNumPro());
+        preStat.setInt(2, produit.getPuPro());
+        preStat.setString(3, produit.getNomPro());
+        preStat.setInt(4, produit.getFamPro());
+        boolean result = preStat.execute();
+        return result;
+    }
+
+    @Override
+    public boolean supprimerProduit(int numPro) throws SQLException {
+        String queryPro = "DELETE FROM ecomm.produit WHERE numPro=?";
+        PreparedStatement preStat = connection.prepareStatement(queryPro);
+        preStat.setInt(1, num);
+        boolean result = preStat.execute();
+        return result;
+    }
+
 }

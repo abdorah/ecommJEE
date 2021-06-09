@@ -67,5 +67,34 @@ public class FamilleDAO implements FamilleService {
 		}
 		return familles;
     }
+
+	@Override
+	public boolean addFamille(Famille famille) throws SQLException {
+        String query = "INSERT INTO ecomm.famille(numFam, nomFam) VALUES(?, ?);";
+        PreparedStatement preStat = connection.prepareStatement(queryCde);
+        preStat.setInt(1, famille.getNumeroFam());
+        preStat.setString(2, famille.getNomFam());
+        boolean result = preStat.execute();
+        return result;
+	}
+
+	@Override
+	public boolean supprimerFamille(int numFam) throws SQLException {
+		String query = "DELETE FROM ecomm.commande WHERE numCde=?;";
+        PreparedStatement preStat;
+        preStat = connection.prepareStatement(query);
+        preStat.setInt(1, numCde);
+        boolean resultFamPro = updateDeleteProFam( numFam);
+		int result = preStat.executeUpdate();
+        return result > 0 ? true : false & resultFamPro;
+    }
+
+    public boolean updateDeleteProFam(int numFam) throws SQLException {
+        String queryProFam = "DELETE FROM ecomm.produit WHERE famPro=?";
+        PreparedStatement preStat = connection.prepareStatement(queryProFam);
+        preStat.setInt(1, numFam);
+        boolean result = preStat.execute();
+        return result;
+    }
     
 }
