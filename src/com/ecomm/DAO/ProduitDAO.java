@@ -26,7 +26,7 @@ public class ProduitDAO implements ProduitService {
 
     @Override
     public Produit getProduitByNum(int num) throws SQLException {
-        String query = "SELECT puPro, nomPro, nomFam FROM ecomm.produit WHERE numPro = ?;";
+        String query = "SELECT puPro, nomPro, nomFam, stock FROM ecomm.produit WHERE numPro = ?;";
         PreparedStatement preStat = connection.prepareStatement(query);
         preStat.setInt(1, num);
         ResultSet result = preStat.executeQuery();
@@ -34,15 +34,16 @@ public class ProduitDAO implements ProduitService {
         if (result.next()) {
             int pu = result.getInt("puPro");
             String nomPro = result.getString("nomPro");
+            int stock = result.getInt("stock");
             String nomFam = result.getString("nomFam");
-            produit = new Produit(num, pu, nomPro, nomFam);
+            produit = new Produit(num, pu, nomPro, nomFam, stock);
         }
         return produit;
     }
 
     @Override
     public Produit getProduitByNom(String nom) throws SQLException {
-        String query = "SELECT numPro, puPro, nomFam FROM ecomm.produit WHERE nomPro = ?;";
+        String query = "SELECT numPro, puPro, nomFam, stock FROM ecomm.produit WHERE nomPro = ?;";
         PreparedStatement preStat = connection.prepareStatement(query);
         preStat.setString(1, nom);
         ResultSet result = preStat.executeQuery();
@@ -51,14 +52,15 @@ public class ProduitDAO implements ProduitService {
             int num = result.getInt("numPro");
             int pu = result.getInt("puPro");
             String nomFam = result.getString("nomFam");
-            produit = new Produit(num, pu, nom, nomFam);
+            int stock = result.getInt("stock");
+            produit = new Produit(num, pu, nom, nomFam, stock);
         }
         return produit;
     }
 
     @Override
     public List<Produit> getPoduitsByFamilleNom(String nom) throws SQLException {
-        String query = "SELECT numPro, puPro, nomPro FROM ecomm.produit WHERE famPro = ?;";
+        String query = "SELECT numPro, puPro, nomPro, stock FROM ecomm.produit WHERE famPro = ?;";
         PreparedStatement preStat = connection.prepareStatement(query);
         preStat.setString(1, nom);
         ResultSet result = preStat.executeQuery();
@@ -68,7 +70,8 @@ public class ProduitDAO implements ProduitService {
             int num = result.getInt("numPro");
             int pu = result.getInt("puPro");
             String nomPro = result.getString("nomPro");
-            produit = new Produit(num, pu, nomPro, nom);
+            int stock = result.getInt("stock");
+            produit = new Produit(num, pu, nomPro, nom, stock);
             produits.add(produit);
         }
         return produits;
@@ -76,12 +79,13 @@ public class ProduitDAO implements ProduitService {
 
     @Override
     public boolean addProduit(Produit produit) throws SQLException {
-        String query = "INSERT INTO ecomm.produit(numPro, puPro, nomPro, famPro) VALUES(0, 0, '', 0);";
-        PreparedStatement preStat = connection.prepareStatement(queryCde);
+        String query = "INSERT INTO ecomm.produit(numPro, puPro, nomPro, famPro, stock) VALUES(?, ?, ?, ?, ?);";
+        PreparedStatement preStat = connection.prepareStatement(query);
         preStat.setInt(1, produit.getNumPro());
         preStat.setInt(2, produit.getPuPro());
         preStat.setString(3, produit.getNomPro());
-        preStat.setInt(4, produit.getFamPro());
+        preStat.setString(4, produit.getFamPro());
+        preStat.setInt(5, produit.getStock());
         boolean result = preStat.execute();
         return result;
     }
@@ -90,7 +94,7 @@ public class ProduitDAO implements ProduitService {
     public boolean supprimerProduit(int numPro) throws SQLException {
         String queryPro = "DELETE FROM ecomm.produit WHERE numPro=?";
         PreparedStatement preStat = connection.prepareStatement(queryPro);
-        preStat.setInt(1, num);
+        preStat.setInt(1, numPro);
         boolean result = preStat.execute();
         return result;
     }
