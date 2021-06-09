@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-// import com.ecomm.DAO.AdministrateurDAO;
 import com.ecomm.DAO.UtilisateurDAO;
 import com.ecomm.javaBeans.Utilisateur;
 
@@ -31,10 +30,6 @@ public class Login extends HttpServlet {
     		Utilisateur user = (Utilisateur) session.getAttribute("user");
     		String  accountType = user.getAccountType() ;
             if(accountType.equals("administrateur")) {
-        		// AdministrateurDAO administrateurDAO = new AdministrateurDAO();
-        		// HomeData homeData;
-        		// homeData = administrateurDAO.getData();
-        		// request.setAttribute("homeData",homeData);
             	this.getServletContext().getRequestDispatcher("/WEB-INF/homeAdmin.jsp").forward(request, response);
             }
             else if(accountType.equals("client")) {
@@ -64,10 +59,6 @@ public class Login extends HttpServlet {
             session.setAttribute("user", user);
             String  accountType = user.getAccountType() ;
             if(accountType.equals("administrateur")) {
-        		// AdministrateurDAO administrateurDAO = new AdministrateurDAO();
-        		// HomeData homeData;
-        		// homeData = administrateurDAO.getData();
-        		// request.setAttribute("homeData",homeData);
             	this.getServletContext().getRequestDispatcher("/WEB-INF/homeAdmin.jsp").forward(request, response);
             }
             else if(accountType.equals("client")) {

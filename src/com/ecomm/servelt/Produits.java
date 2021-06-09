@@ -9,14 +9,15 @@ import java.io.IOException;
 
 @WebServlet("/Produits")
 public class Produits extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-String familleName= (String) request.getParameter("familleName");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String familleName = (String) request.getParameter("familleName");
         System.out.println(familleName);
-
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/shop.jsp").forward(request, response);
     }
