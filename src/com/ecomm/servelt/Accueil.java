@@ -1,20 +1,17 @@
 package com.ecomm.servelt;
 
-import com.ecomm.DAO.FamilleDAO;
-import com.ecomm.DAO.FamilleService;
-import com.ecomm.javaBeans.Famille;
-
-import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.ecomm.DAO.FamilleDAO;
+import com.ecomm.javaBeans.Famille;
 
 @WebServlet("/Accueil")
 public class Accueil extends HttpServlet {

@@ -6,15 +6,17 @@ public class Produit {
     private int puPro;
     private String nomPro;
     private String famPro;
+    private int stock;
 
     public Produit() {
     }
 
-    public Produit(int numPro, int puPro, String nomPro, String famPro) {
+    public Produit(int numPro, int puPro, String nomPro, String famPro, int stock) {
         this.numPro = numPro;
         this.puPro = puPro;
         this.nomPro = nomPro;
         this.famPro = famPro;
+        this.stock = stock;
     }
 
     public int getNumPro() {
@@ -47,6 +49,14 @@ public class Produit {
 
     public void setFamPro(String famPro) {
         this.famPro = famPro;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
 }
