@@ -23,6 +23,9 @@
   
   <!-- Themefisher Icon font -->
   <link rel="stylesheet" href="plugins/themefisher-font/style.css">
+
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <!-- bootstrap.min css -->
   <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
   
@@ -45,7 +48,7 @@
 		<div class="row">
 			<div class="col-md-4 col-xs-12 col-sm-4">
 				<div class="contact-number">
-					<i class="tf-ion-ios-telephone"></i>
+					<i class="fa fa-mobile" aria-hidden="true"></i>
 					<span>0129- 12323-123123</span>
 				</div>
 			</div>
@@ -72,8 +75,7 @@
 				<!-- Cart -->
 				<ul class="top-menu text-right list-inline">
 					<li class="dropdown cart-nav dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
-								class="tf-ion-android-cart"></i>Cart</a>
+						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Cart</a>
 						<div class="dropdown-menu cart-dropdown">
 							<!-- Cart Item -->
 							<div class="media">
@@ -321,9 +323,7 @@
 		<div class="row">
 
 			<c:forEach items="${produits}" var="produits" >
-				<a href="<c:url value="http://localhost:8080/ecomm_war_exploded/Produits">
-                   <c:param name="familleName" value="" />
-                  </c:url>">
+
 					<div class="col-md-4">
 						<div class="product-item">
 							<div class="product-thumb">
@@ -333,16 +333,11 @@
 
 								<div class="preview-meta">
 									<ul>
+
 										<li>
-									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-										</li>
-										<li>
-											<a href="#!" ><i class="tf-ion-ios-heart"></i></a>
-										</li>
-										<li>
-											<a href="#!"><i class="tf-ion-android-cart"></i></a>
+											<a href="<c:url value="http://localhost:8080/ecomm_war_exploded/Produits">
+                   <c:param name="familleName" value="" />
+                  </c:url>"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
 										</li>
 									</ul>
 								</div>
@@ -350,12 +345,12 @@
 							</div>
 
 							<div class="product-content">
-								<h4><a href="product-single.jsp">${produits.numPro}</a></h4>
-								<p class="price">Num:${produits.nomPro}</p>
+								<h4><a href="product-single.jsp"></a></h4>
+								<p class="price">${produits.nomPro}</p>
 							</div>
 						</div>
 					</div>
-				</a>
+
 
 			</c:forEach>
 
@@ -408,28 +403,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<ul class="social-media">
-					<li>
-						<a href="https://www.facebook.com/themefisher">
-							<i class="tf-ion-social-facebook"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.instagram.com/themefisher">
-							<i class="tf-ion-social-instagram"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.twitter.com/themefisher">
-							<i class="tf-ion-social-twitter"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.pinterest.com/themefisher/">
-							<i class="tf-ion-social-pinterest"></i>
-						</a>
-					</li>
-				</ul>
+
 				<ul class="footer-menu text-uppercase">
 					<li>
 						<a href="contact.jsp">CONTACT</a>
@@ -444,7 +418,7 @@
 						<a href="contact.jsp">PRIVACY POLICY</a>
 					</li>
 				</ul>
-				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
+				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by heart</p>
 			</div>
 		</div>
 	</div>

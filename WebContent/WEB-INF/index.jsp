@@ -22,6 +22,9 @@
   
   <!-- Themefisher Icon font -->
   <link rel="stylesheet" href="plugins/themefisher-font/style.css">
+
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <!-- bootstrap.min css -->
   <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
   
@@ -44,7 +47,7 @@
 		<div class="row">
 			<div class="col-md-4 col-xs-12 col-sm-4">
 				<div class="contact-number">
-					<i class="icon-mobile-phone"></i>
+					<i class="fa fa-mobile" aria-hidden="true"></i>
 					<span>+212- 12323-123123</span>
 				</div>
 			</div>
@@ -71,8 +74,7 @@
 				<!-- Cart -->
 				<ul class="top-menu text-right list-inline">
 					<li class="dropdown cart-nav dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
-								class="tf-ion-android-cart"></i>Cart</a>
+						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Cart</a>
 						<div class="dropdown-menu cart-dropdown">
 							<!-- Cart Item -->
 							<div class="media">
@@ -214,15 +216,10 @@
 							<ul>
 								<li>
 									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
+										Voir<i class="fa fa-check" aria-hidden="true"></i>
 									</span>
 								</li>
-								<li>
-			                        <a href="#!" ><i class="tf-ion-ios-heart"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="tf-ion-android-cart"></i></a>
-								</li>
+
 							</ul>
                       	</div>
 
@@ -252,7 +249,7 @@ Start Call To Action
 			<div class="col-md-12 text-center">
 				<div class="title">
 					<h2>SUBSCRIBE TO NEWSLETTER</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, <br> facilis numquam impedit ut sequi. Minus facilis vitae excepturi sit laboriosam.</p>
+					<p>Ecommerce java EE application <br> facilis numquam impedit ut sequi. Minus facilis vitae excepturi sit laboriosam.</p>
 				</div>
 				<div class="col-lg-6 col-md-offset-3">
 				    <div class="input-group subscription-form">
@@ -274,28 +271,7 @@ Start Call To Action
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<ul class="social-media">
-					<li>
-						<a href="https://www.facebook.com/themefisher">
-							<i class="tf-ion-social-facebook"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.instagram.com/themefisher">
-							<i class="tf-ion-social-instagram"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.twitter.com/themefisher">
-							<i class="tf-ion-social-twitter"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.pinterest.com/themefisher/">
-							<i class="tf-ion-social-pinterest"></i>
-						</a>
-					</li>
-				</ul>
+
 				<ul class="footer-menu text-uppercase">
 					<li>
 						<a href="contact.jsp">CONTACT</a>
