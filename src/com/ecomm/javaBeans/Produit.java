@@ -10,6 +10,13 @@ public class Produit {
     public Produit() {
     }
 
+    public Produit(int numPro, int puPro, String nomPro, String famPro) {
+        this.numPro = numPro;
+        this.puPro = puPro;
+        this.nomPro = nomPro;
+        this.famPro = famPro;
+    }
+
     public int getNumPro() {
         return numPro;
     }

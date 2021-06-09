@@ -35,7 +35,6 @@ public class FamilleDAO implements FamilleService {
 			String nom = result.getString("nomFam");
 			famille = new Famille(num, nom);
 		}
-		preStat.close();
 		return famille;
     }
 
@@ -50,7 +49,6 @@ public class FamilleDAO implements FamilleService {
 			int num = result.getInt("numFam");
 			famille = new Famille(num, nom);
 		}
-		preStat.close();
 		return famille;
     }
 
@@ -61,13 +59,12 @@ public class FamilleDAO implements FamilleService {
 		ResultSet result = preStat.executeQuery();
 		Famille famille = new Famille();
         List<Famille> familles = new ArrayList<Famille>();
-		if (result.next()) {
+		while (result.next()) {
 			int num = result.getInt("numFam");
             String nom = result.getString("nomFam");
 			famille = new Famille(num, nom);
             familles.add(famille);
 		}
-		preStat.close();
 		return familles;
     }
     
