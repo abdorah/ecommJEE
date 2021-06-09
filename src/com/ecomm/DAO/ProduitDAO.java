@@ -99,4 +99,14 @@ public class ProduitDAO implements ProduitService {
         return result;
     }
 
+    @Override
+    public boolean modifierProduit(int numPro, int qte) throws SQLException {
+        String queryPro = "UPDATE ecomm.produit SET stock=? WHERE numPro=?;";
+        PreparedStatement preStat = connection.prepareStatement(queryPro);
+        preStat.setInt(1, numPro);
+        preStat.setInt(2, qte);
+        boolean result = preStat.execute();
+        return result;
+    }
+
 }
