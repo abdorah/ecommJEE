@@ -28,7 +28,6 @@
       </dependency>
   </dependencies>
   <build>
-    <sourceDirectory>src</sourceDirectory>
     <resources>
       <resource>
         <directory>resources</directory>

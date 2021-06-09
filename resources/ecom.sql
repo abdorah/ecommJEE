@@ -21,7 +21,7 @@ CREATE TABLE `famille` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- ecomm.utiilisateur definition
+-- ecomm.utilisateur definition
 
 CREATE TABLE `utilisateur` (
   `numUtil` int NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE `utilisateur` (
 CREATE TABLE `client` (
   `numCli` int NOT NULL,
   PRIMARY KEY (`numCli`),
-  CONSTRAINT `client_FK` FOREIGN KEY (`numCli`) REFERENCES `utiilisateur` (`numUtil`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT `client_FK` FOREIGN KEY (`numCli`) REFERENCES `utilisateur` (`numUtil`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -61,7 +61,7 @@ CREATE TABLE `produit` (
 CREATE TABLE `administrateur` (
   `numAdmin` int NOT NULL,
   PRIMARY KEY (`numAdmin`),
-  CONSTRAINT `administrateur_FK` FOREIGN KEY (`numAdmin`) REFERENCES `utiilisateur` (`numUtil`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT `administrateur_FK` FOREIGN KEY (`numAdmin`) REFERENCES `utilisateur` (`numUtil`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
