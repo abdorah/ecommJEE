@@ -16,32 +16,29 @@ import com.ecomm.javaBeans.Famille;
 @WebServlet("/Accueil")
 public class Accueil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
 
-    public Accueil() {
-        super();
-    }
+	public Accueil() {
+		super();
+	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FamilleDAO familles=new FamilleDAO();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		FamilleDAO familles = new FamilleDAO();
 		List<Famille> familleList = null;
 		try {
-			familleList=familles.getFamilles();
+			familleList = familles.getFamilles();
 
-			request.setAttribute("list",familleList);
+			request.setAttribute("list", familleList);
 		} catch (SQLException throwables) {
 			throwables.printStackTrace();
 		}
 
-
-
 		this.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-
-
 
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
