@@ -8,6 +8,11 @@ public class Famille {
     public Famille() {
     }
 
+    public Famille(int numeroFam, String nomFam) {
+        this.numeroFam = numeroFam;
+        this.nomFam = nomFam;
+    }
+
     public int getNumeroFam() {
         return numeroFam;
     }
