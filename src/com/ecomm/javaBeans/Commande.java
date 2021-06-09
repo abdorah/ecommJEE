@@ -1,6 +1,6 @@
 package com.ecomm.javaBeans;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Commande {
     
@@ -8,6 +8,9 @@ public class Commande {
     private Date dateCde;
 
     public Commande() {
+    }
+
+    public Commande(int num, Date date) {
     }
 
     public int getNumCde() {

@@ -88,3 +88,37 @@ CREATE TABLE `procde` (
   CONSTRAINT `procde_ibfk_1` FOREIGN KEY (`numpro`) REFERENCES `produit` (`numPro`),
   CONSTRAINT `procde_ibfk_2` FOREIGN KEY (`numcde`) REFERENCES `commande` (`numCde`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ecomm inserts
+
+INSERT INTO ecomm.utilisateur
+(numUtil, nomUtil, prenomUtil, addrUtil, passUtil, typeCompte)
+VALUES(0, '', '', '', '', '');
+
+INSERT INTO ecomm.administrateur
+(numAdmin)
+VALUES(0);
+
+INSERT INTO ecomm.client
+(numCli)
+VALUES(0);
+
+INSERT INTO ecomm.commande
+(numCde, dateCde)
+VALUES(0, now());
+
+INSERT INTO ecomm.cdecli
+(numcde, numcli)
+VALUES(0, 0);
+
+INSERT INTO ecomm.famille
+(numFam, nomFam)
+VALUES(0, '');
+
+INSERT INTO ecomm.produit
+(numPro, puPro, nomPro, famPro)
+VALUES(0, 0, '', 0);
+
+INSERT INTO ecomm.procde
+(numpro, numcde, qte)
+VALUES(0, 0, 0);

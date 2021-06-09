@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.ecomm.javaBeans.Administrateur;
 import com.ecomm.javaBeans.Client;
 import com.ecomm.javaBeans.Utilisateur;
 
@@ -53,7 +54,7 @@ public class UtilisateurDAO implements UtilisateurService {
 
 	// for register:
 	@Override
-	public boolean isExist(String email, String cin) throws SQLException {
+	public boolean isExist(String email) throws SQLException {
 		boolean exist = true;
 		String query = "SELECT numUtil FROM utilisateur WHERE addrUtil = ?";
 		PreparedStatement preStat = connection.prepareStatement(query);
@@ -68,44 +69,48 @@ public class UtilisateurDAO implements UtilisateurService {
 
 	@Override
 	public int register(Client client) throws SQLException {
-
-		/*
-		 * / insert the client in the table user:
-		 */
-
 		String userQuery = "INSERT INTO utilisateur (nomUtil, prenomUtil, addrUtil, passUtil) VALUES(?,?,?,?)";
-
 		PreparedStatement preStatOfUtilisateur = connection.prepareStatement(userQuery);
-
-		// set attributes
 		preStatOfUtilisateur.setString(1, client.getNomUtil());
 		preStatOfUtilisateur.setString(2, client.getPrenomUtil());
 		preStatOfUtilisateur.setString(3, client.getAdrUtil());
 		preStatOfUtilisateur.setString(4, client.getPass());
-
 		preStatOfUtilisateur.executeUpdate();
-
 		String maxQuery = "SELECT MAX(numUtil) AS MID FROM utilisateur";
 		PreparedStatement ms = connection.prepareStatement(maxQuery);
 		ResultSet resultSet = ms.executeQuery();
 		if (resultSet.next()) {
 			client.setNumUtil(resultSet.getInt("MID"));
 		}
-
-		/*
-		 * / insert the client in the table client:
-		 */
 		String clientQuery = "INSERT INTO ecomm.client (numCli) VALUES (?)";
-
 		PreparedStatement preStatOfclient = connection.prepareStatement(clientQuery);
-
 		preStatOfclient.setInt(1, client.getNumUtil());
-
-		// Execute statements
 		preStatOfclient.executeUpdate();
-
-		// close statement
 		preStatOfclient.close();
+		preStatOfUtilisateur.close();
+		return 0;
+	}
+
+	@Override
+	public int addAdmin(Administrateur administrateur) throws SQLException {
+		String userQuery = "INSERT INTO utilisateur (nomUtil, prenomUtil, addrUtil, passUtil) VALUES(?,?,?,?)";
+		PreparedStatement preStatOfUtilisateur = connection.prepareStatement(userQuery);
+		preStatOfUtilisateur.setString(1, administrateur.getNomUtil());
+		preStatOfUtilisateur.setString(2, administrateur.getPrenomUtil());
+		preStatOfUtilisateur.setString(3, administrateur.getAdrUtil());
+		preStatOfUtilisateur.setString(4, administrateur.getPass());
+		preStatOfUtilisateur.executeUpdate();
+		String maxQuery = "SELECT MAX(numUtil) AS MID FROM utilisateur";
+		PreparedStatement ms = connection.prepareStatement(maxQuery);
+		ResultSet resultSet = ms.executeQuery();
+		if (resultSet.next()) {
+			administrateur.setNumUtil(resultSet.getInt("MID"));
+		}
+		String administrateurQuery = "INSERT INTO ecomm.administrateur (numCli) VALUES (?)";
+		PreparedStatement preStatOfAdministrateur = connection.prepareStatement(administrateurQuery);
+		preStatOfAdministrateur.setInt(1, administrateur.getNumUtil());
+		preStatOfAdministrateur.executeUpdate();
+		preStatOfAdministrateur.close();
 		preStatOfUtilisateur.close();
 		return 0;
 	}
