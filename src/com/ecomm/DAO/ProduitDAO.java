@@ -58,7 +58,7 @@ public class ProduitDAO implements ProduitService {
 
     @Override
     public List<Produit> getPoduitsByFamilleNom(String nom) throws SQLException {
-        String query = "SELECT numPro, puPro, nomPro FROM ecomm.produit WHERE famPro = ?;";
+        String query = "SELECT numPro, puPro, nomPro FROM ecomm.produit,ecomm.famille WHERE famPro = numFam AND nomFam=?;";
         PreparedStatement preStat = connection.prepareStatement(query);
         preStat.setString(1, nom);
         ResultSet result = preStat.executeQuery();
