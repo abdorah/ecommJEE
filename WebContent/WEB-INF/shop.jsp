@@ -372,7 +372,7 @@
 
 
 										<li>
-											<a href="<c:url value="http://localhost:8080/ecomm_war_exploded/Produits">
+											<a href="<c:url value="/Produits">
                    <c:param name="familleName" value="" />
                   </c:url>"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
 										</li>
