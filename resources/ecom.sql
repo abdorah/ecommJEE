@@ -2,6 +2,15 @@ CREATE DATABASE `ecomm` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0
 
 USE `ecomm`;
 
+-- clean database 
+
+DROP TABLE famille;
+DROP TABLE produit;
+DROP TABLE client;
+DROP TABLE commande;
+DROP TABLE procde;
+DROP TABLE cdecli;
+
 -- ecomm.administrateur definition
 
 CREATE TABLE `administrateur` (
