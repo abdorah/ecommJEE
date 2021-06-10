@@ -33,7 +33,7 @@ public class Login extends HttpServlet {
             	this.getServletContext().getRequestDispatcher("/WEB-INF/homeAdmin.jsp").forward(request, response);
             }
             else if(accountType.equals("client")) {
-            	this.getServletContext().getRequestDispatcher("/WEB-INF/homeClient.jsp").forward(request, response);
+            	this.getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
             }
     	}
     	
@@ -62,7 +62,7 @@ public class Login extends HttpServlet {
             	this.getServletContext().getRequestDispatcher("/WEB-INF/homeAdmin.jsp").forward(request, response);
             }
             else if(accountType.equals("client")) {
-            	this.getServletContext().getRequestDispatcher("/WEB-INF/homeClient.jsp").forward(request, response);
+            	this.getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
             }
             				
 		}

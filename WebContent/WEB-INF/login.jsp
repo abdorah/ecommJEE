@@ -47,15 +47,16 @@
             <img src="images/logo.png" alt="">
           </a>
           <h2 class="text-center">Welcome Back</h2>
-          <form class="text-left clearfix" action="index.jsp" >
+          <form class="text-left clearfix"  method="POST" action="Login" >
             <div class="form-group">
-              <input type="email" class="form-control"  placeholder="Email">
+              <input type="email" class="form-control" name="email"  placeholder="Email">
             </div>
             <div class="form-group">
-              <input type="password" class="form-control" placeholder="Password">
+              <input type="password" class="form-control" name="password" placeholder="Password">
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-main text-center" >Login</button>
+              <button type="submit" class="btn btn-main text-center" >Se connecter</button>
+
             </div>
           </form>
           <p class="mt-20">New in this site ?<a href="signin.jsp"> Create New Account</a></p>
