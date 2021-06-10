@@ -1,3 +1,4 @@
+<%@ page import="com.ecomm.javaBeans.Produit" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		 pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -336,8 +337,10 @@
 
 										<li>
 											<a href="<c:url value="/Login">
-                   <c:param name="familleName" value="${produits.nomPro}" />
+                            <c:param name="numPro" value="${produits.numPro}" />
                   </c:url>"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+
+
 										</li>
 									</ul>
 								</div>

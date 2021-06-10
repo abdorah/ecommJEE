@@ -7,48 +7,58 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ecomm.DAO.CommandeDAO;
 import com.ecomm.DAO.ProduitDAO;
 import com.ecomm.javaBeans.Commande;
 import com.ecomm.javaBeans.Produit;
-
+import com.ecomm.javaBeans.Utilisateur;
+///WEB-INF/cart.jsp
 @WebServlet("/Commandes")
 public class Commandes extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Commande> commandes = new ArrayList<Commande>();
-        CommandeDAO CommandesDao = new CommandeDAO();
-        Commande commande = new Commande(Integer.parseInt(request.getParameter("numCommande")),
-                Date.valueOf(LocalDate.now()));
-        commandes.add(commande);
-        boolean confirme = Boolean.parseBoolean(request.getParameter("confirme"));
-        if (confirme) {
-            ProduitDAO produitDAO = new ProduitDAO();
-            Produit produit;
-            try {
-                int numUtil = Integer.parseInt(request.getParameter("numUtil"));
-                int qte = Integer.parseInt(request.getParameter("qte"));
-                produit = produitDAO.getProduitByNom(request.getParameter("nomPro"));
-                if (qte > produit.getStock()) {
-                    System.out.println("stock insiffusant");
-                } else {
-                    CommandesDao.addCommande(commande, produit, numUtil, qte);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+        ServletContext servletcontext = getServletContext();
+        int numPro = (int)servletcontext.getAttribute("numpro");
+       //int numPro = (int) getServletContext().getAttribute("numpro");
+        System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmaaaaaa"+numPro);
+
+        //int numPro = (int) valueObject;
+
+        ProduitDAO produitDAO = new ProduitDAO();
+        CommandeDAO commandesDao = new CommandeDAO();
+        try {
+
+            Produit produit = produitDAO.getProduitByNum(numPro);
+            HttpSession session = request.getSession();
+            Utilisateur utilisateur = (Utilisateur) session.getAttribute("user");
+
+            int numUtil = utilisateur.getNumUtil();
+            int qte = Integer.parseInt(request.getParameter("qte"));
+            produit = produitDAO.getProduitByNom(request.getParameter("nomPro"));
+            if (qte > produit.getStock()) {
+                System.out.println("stock insiffusant");
+            } else {
+                int maxCommande = commandesDao.getCommandes(numUtil).stream().map(c->c.getNumCde()).max(Integer::compare).get();
+                maxCommande++;
+                commandesDao.addCommande(new Commande(maxCommande,Date.valueOf(LocalDate.now())), produit, numUtil, qte);
+                this.getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
             }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        this.getServletContext().getRequestDispatcher("/WEB-INF/Commandes.jsp").forward(request, response);
-
+        this.getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
     }
 }

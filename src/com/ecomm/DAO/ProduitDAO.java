@@ -26,7 +26,7 @@ public class ProduitDAO implements ProduitService {
 
     @Override
     public Produit getProduitByNum(int num) throws SQLException {
-        String query = "SELECT puPro, nomPro, nomFam, stock FROM ecomm.produit WHERE numPro = ?;";
+        String query = "SELECT puPro, nomPro, famPro, stock FROM ecomm.produit WHERE numPro = ?;";
         PreparedStatement preStat = connection.prepareStatement(query);
         preStat.setInt(1, num);
         ResultSet result = preStat.executeQuery();
@@ -35,7 +35,7 @@ public class ProduitDAO implements ProduitService {
             int pu = result.getInt("puPro");
             String nomPro = result.getString("nomPro");
             int stock = result.getInt("stock");
-            String nomFam = result.getString("nomFam");
+            int nomFam = result.getInt("famPro");
             produit = new Produit(num, pu, nomPro, nomFam, stock);
         }
         return produit;
@@ -43,7 +43,7 @@ public class ProduitDAO implements ProduitService {
 
     @Override
     public Produit getProduitByNom(String nom) throws SQLException {
-        String query = "SELECT numPro, puPro, nomFam, stock FROM ecomm.produit WHERE nomPro = ?;";
+        String query = "SELECT numPro, puPro, famPro, stock FROM ecomm.produit WHERE nomPro = ?;";
         PreparedStatement preStat = connection.prepareStatement(query);
         preStat.setString(1, nom);
         ResultSet result = preStat.executeQuery();
@@ -51,7 +51,7 @@ public class ProduitDAO implements ProduitService {
         if (result.next()) {
             int num = result.getInt("numPro");
             int pu = result.getInt("puPro");
-            String nomFam = result.getString("nomFam");
+            int nomFam = result.getInt("famPro");
             int stock = result.getInt("stock");
             produit = new Produit(num, pu, nom, nomFam, stock);
         }
@@ -60,7 +60,7 @@ public class ProduitDAO implements ProduitService {
 
     @Override
     public List<Produit> getPoduitsByFamilleNom(String nom) throws SQLException {
-        String query = "SELECT numPro, puPro, nomPro, stock FROM ecomm.produit,ecomm.famille WHERE numFam=famPro AND nomFam = ?;";
+        String query = "SELECT numPro, puPro, nomPro, famPro, stock FROM ecomm.produit,ecomm.famille WHERE numFam=famPro AND nomFam = ?;";
         PreparedStatement preStat = connection.prepareStatement(query);
         preStat.setString(1, nom);
         ResultSet result = preStat.executeQuery();
@@ -70,8 +70,9 @@ public class ProduitDAO implements ProduitService {
             int num = result.getInt("numPro");
             int pu = result.getInt("puPro");
             String nomPro = result.getString("nomPro");
+            int famPro = result.getInt("famPro");
             int stock = result.getInt("stock");
-            produit = new Produit(num, pu, nomPro, nom, stock);
+            produit = new Produit(num, pu, nomPro, famPro, stock);
             produits.add(produit);
         }
         return produits;
@@ -84,7 +85,7 @@ public class ProduitDAO implements ProduitService {
         preStat.setInt(1, produit.getNumPro());
         preStat.setInt(2, produit.getPuPro());
         preStat.setString(3, produit.getNomPro());
-        preStat.setString(4, produit.getFamPro());
+        preStat.setInt(4, produit.getFamPro());
         preStat.setInt(5, produit.getStock());
         boolean result = preStat.execute();
         return result;

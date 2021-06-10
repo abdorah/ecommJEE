@@ -27,6 +27,7 @@ public class Produits extends HttpServlet {
             if(familleName!=null){
                 produits=ProduitsDao.getPoduitsByFamilleNom(familleName);
                 request.setAttribute("produits",produits);
+                // request.setAttribute("numPro", produits.get().getNumPro());
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
