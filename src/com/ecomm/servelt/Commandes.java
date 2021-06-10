@@ -32,10 +32,14 @@ public class Commandes extends HttpServlet {
             ProduitDAO produitDAO = new ProduitDAO();
             Produit produit;
             try {
-                produit = produitDAO.getProduitByNom(request.getParameter("nomPro"));
                 int numUtil = Integer.parseInt(request.getParameter("numUtil"));
                 int qte = Integer.parseInt(request.getParameter("qte"));
-                CommandesDao.addCommande(commande, produit, numUtil, qte);
+                produit = produitDAO.getProduitByNom(request.getParameter("nomPro"));
+                if (qte > produit.getStock()) {
+                    System.out.println("stock insiffusant");
+                } else {
+                    CommandesDao.addCommande(commande, produit, numUtil, qte);
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
