@@ -49,8 +49,8 @@ public class CommandeDAO implements CommandeService {
         Commande commande = new Commande();
         List<Commande> commandes = new ArrayList<Commande>();
         while (result.next()) {
-            int numCde = result.getInt("numPro");
-            Date date = result.getDate("puPro");
+            int numCde = result.getInt("numCde");
+            Date date = result.getDate("dateCde");
             commande = new Commande(numCde, date);
             commandes.add(commande);
         }
@@ -59,14 +59,11 @@ public class CommandeDAO implements CommandeService {
 
     @Override
     public boolean addCommande(Commande commande, Produit produit, int numUtil, int qte) throws SQLException {
-        String queryCde = "INSERT INTO ecomm.commande(numCde, dateCde) VALUES(?, now());";
+        String queryCde = "INSERT INTO ecomm.commande(dateCde) VALUES(NOW());";
         PreparedStatement preStat = connection.prepareStatement(queryCde);
-        preStat.setInt(1, commande.getNumCde());
-        preStat.setDate(2, commande.getDateCde());
         boolean resultCde = preStat.execute();
         boolean resultCdPr = updateInsertCdPr(commande, produit, qte);
-        boolean resultCdCl = updateInsertCdCl(commande, produit, numUtil, qte);
-        boolean result = resultCdCl & resultCdPr & resultCde;
+        boolean result = resultCdPr & resultCde;
         return result;
     }
 
@@ -83,20 +80,11 @@ public class CommandeDAO implements CommandeService {
     }
 
     public boolean updateInsertCdPr(Commande commande, Produit produit, int qte) throws SQLException {
-        String queryCdPr = "INSERT INTO ecomm.procde (numpro, numcde, qte) VALUES(?, ?, ?);";
+        String queryCdPr = "UPDATE ecomm.procde SET qte=? WHERE numpro=? AND numcde=?;";
         PreparedStatement preStat = connection.prepareStatement(queryCdPr);
-        preStat.setInt(1, produit.getNumPro());
-        preStat.setInt(2, commande.getNumCde());
-        preStat.setInt(3, qte);
-        boolean result = preStat.execute();
-        return result;
-    }
-
-    public boolean updateInsertCdCl(Commande commande, Produit produit, int numUtil, int qte) throws SQLException {
-        String queryCdCl = "INSERT INTO ecomm.cdecli (numcde, numcli) VALUES(?, ?);";
-        PreparedStatement preStat = connection.prepareStatement(queryCdCl);
-        preStat.setInt(1, commande.getNumCde());
-        preStat.setInt(2, numUtil);
+        preStat.setInt(2, produit.getNumPro());
+        preStat.setInt(3, commande.getNumCde());
+        preStat.setInt(1, qte);
         boolean result = preStat.execute();
         return result;
     }

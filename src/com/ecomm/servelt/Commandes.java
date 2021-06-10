@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -20,7 +18,7 @@ import com.ecomm.DAO.ProduitDAO;
 import com.ecomm.javaBeans.Commande;
 import com.ecomm.javaBeans.Produit;
 import com.ecomm.javaBeans.Utilisateur;
-///WEB-INF/cart.jsp
+
 @WebServlet("/Commandes")
 public class Commandes extends HttpServlet {
 
@@ -28,27 +26,24 @@ public class Commandes extends HttpServlet {
             throws ServletException, IOException {
         ServletContext servletcontext = getServletContext();
         int numPro = (int)servletcontext.getAttribute("numpro");
-       //int numPro = (int) getServletContext().getAttribute("numpro");
         System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmaaaaaa"+numPro);
-
-        //int numPro = (int) valueObject;
-
         ProduitDAO produitDAO = new ProduitDAO();
         CommandeDAO commandesDao = new CommandeDAO();
         try {
-
             Produit produit = produitDAO.getProduitByNum(numPro);
             HttpSession session = request.getSession();
             Utilisateur utilisateur = (Utilisateur) session.getAttribute("user");
-
             int numUtil = utilisateur.getNumUtil();
-            int qte = Integer.parseInt(request.getParameter("qte"));
-            produit = produitDAO.getProduitByNom(request.getParameter("nomPro"));
+            int qte = 1;
+            //Integer.parseInt(request.getParameter("qte"));
+            produit = produitDAO.getProduitByNum(numPro);
+            System.out.println(produit.getStock());
             if (qte > produit.getStock()) {
                 System.out.println("stock insiffusant");
             } else {
                 int maxCommande = commandesDao.getCommandes(numUtil).stream().map(c->c.getNumCde()).max(Integer::compare).get();
-                maxCommande++;
+                ++maxCommande;
+                System.out.println("shit"+maxCommande);
                 commandesDao.addCommande(new Commande(maxCommande,Date.valueOf(LocalDate.now())), produit, numUtil, qte);
                 this.getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
             }
