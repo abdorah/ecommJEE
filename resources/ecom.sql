@@ -50,6 +50,7 @@ CREATE TABLE `produit` (
   `puPro` decimal(10,0) DEFAULT NULL,
   `nomPro` varchar(50) DEFAULT NULL,
   `famPro` int DEFAULT NULL,
+  `stock` int DEFAULT NULL,
   PRIMARY KEY (`numPro`),
   KEY `famPro` (`famPro`),
   CONSTRAINT `produit_ibfk_1` FOREIGN KEY (`famPro`) REFERENCES `famille` (`numFam`)
