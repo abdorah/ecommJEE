@@ -371,6 +371,13 @@
 					</div>
 
 
+										<li>
+											<a href="<c:url value="http://localhost:8080/ecomm_war_exploded/Produits">
+                   <c:param name="familleName" value="" />
+                  </c:url>"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+										</li>
+									</ul>
+								</div>
 
 
 					<!-- Modal -->
