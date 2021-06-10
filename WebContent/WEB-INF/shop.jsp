@@ -1,4 +1,3 @@
-<%@ page import="com.ecomm.javaBeans.Produit" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		 pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -323,7 +322,6 @@
 	<div class="container">
 		<div class="row">
 
-
 			<c:forEach items="${produits}" var="produits" >
 
 					<div class="col-md-4">
@@ -331,27 +329,16 @@
 							<div class="product-thumb">
 								<span class="bage">Sale</span>
 
-								<a >
-									<jsp:include page="modal.jsp">
-
-									<jsp:param name="price" value="${produits.getPuPro()}" />
-										<jsp:param name="name" value="${produits.getNomPro()}"/>
-								</jsp:include>
-								</a>
-
 								<img class="img-responsive" src="images/shop/products/product-1.jpg" alt="product-img" />
 
 								<div class="preview-meta">
 									<ul>
 
 										<li>
-
-
-					<span  data-toggle="modal" data-target="#product-modal">
-
-                                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-
-											 </span></li>
+											<a href="<c:url value="http://localhost:8080/ecomm_war_exploded/Produits">
+                   <c:param name="familleName" value="" />
+                  </c:url>"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+										</li>
 									</ul>
 								</div>
 
@@ -359,8 +346,7 @@
 
 							<div class="product-content">
 								<h4><a href="product-single.jsp"></a></h4>
-								<p class="price">$${produits.getPuPro()}</p>
-
+								<p class="price">${produits.nomPro}</p>
 							</div>
 						</div>
 					</div>
@@ -374,6 +360,37 @@
 
 
 
+
+		<!-- Modal -->
+		<div class="modal product-modal fade" id="product-modal">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<i class="tf-ion-close"></i>
+			</button>
+		  	<div class="modal-dialog " role="document">
+		    	<div class="modal-content">
+			      	<div class="modal-body">
+			        	<div class="row">
+			        		<div class="col-md-8 col-sm-6 col-xs-12">
+			        			<div class="modal-image">
+				        			<img class="img-responsive" src="images/shop/products/modal-product.jpg" alt="product-img" />
+			        			</div>
+			        		</div>
+			        		<div class="col-md-4 col-sm-6 col-xs-12">
+			        			<div class="product-short-details">
+			        				<h2 class="product-title">GM Pendant, Basalt Grey</h2>
+			        				<p class="product-price">$200</p>
+			        				<p class="product-short-description">
+			        					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem iusto nihil cum. Illo laborum numquam rem aut officia dicta cumque.
+			        				</p>
+			        				<a href="cart.jsp" class="btn btn-main">Add To Cart</a>
+			        				<a href="product-single.jsp" class="btn btn-transparent">View Product Details</a>
+			        			</div>
+			        		</div>
+			        	</div>
+			        </div>
+		    	</div>
+		  	</div>
+		</div><!-- /.modal -->
 
 		</div>
 	</div>
