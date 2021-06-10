@@ -1,15 +1,33 @@
--- ecomm preconfiguration
+CREATE DATABASE `ecomm` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
-CREATE DATABASE ecomm;
-USE ecomm;
+USE `ecomm`;
+
+-- ecomm.administrateur definition
+
+CREATE TABLE `administrateur` (
+  `numAdmin` int NOT NULL,
+  PRIMARY KEY (`numAdmin`),
+  CONSTRAINT `administrateur_FK` FOREIGN KEY (`numAdmin`) REFERENCES `utilisateur` (`numUtil`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ecomm.cdecli definition
+
+CREATE TABLE `cdecli` (
+  `numcde` int NOT NULL,
+  `numcli` int NOT NULL,
+  PRIMARY KEY (`numcde`,`numcli`),
+  KEY `cdecli_FK_1` (`numcli`),
+  CONSTRAINT `cdecli_FK` FOREIGN KEY (`numcde`) REFERENCES `commande` (`numCde`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `cdecli_FK_1` FOREIGN KEY (`numcli`) REFERENCES `client` (`numCli`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ecomm.commande definition
 
 CREATE TABLE `commande` (
-  `numCde` int NOT NULL,
+  `numCde` int NOT NULL AUTO_INCREMENT,
   `dateCde` date DEFAULT NULL,
   PRIMARY KEY (`numCde`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 -- ecomm.famille definition
@@ -57,27 +75,6 @@ CREATE TABLE `produit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- ecomm.administrateur definition
-
-CREATE TABLE `administrateur` (
-  `numAdmin` int NOT NULL,
-  PRIMARY KEY (`numAdmin`),
-  CONSTRAINT `administrateur_FK` FOREIGN KEY (`numAdmin`) REFERENCES `utilisateur` (`numUtil`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
--- ecomm.cdecli definition
-
-CREATE TABLE `cdecli` (
-  `numcde` int NOT NULL,
-  `numcli` int NOT NULL,
-  PRIMARY KEY (`numcde`,`numcli`),
-  KEY `numcli` (`numcli`),
-  CONSTRAINT `cdecli_ibfk_1` FOREIGN KEY (`numcli`) REFERENCES `client` (`numCli`),
-  CONSTRAINT `cdecli_ibfk_2` FOREIGN KEY (`numcde`) REFERENCES `commande` (`numCde`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
 -- ecomm.procde definition
 
 CREATE TABLE `procde` (
@@ -85,41 +82,7 @@ CREATE TABLE `procde` (
   `numcde` int NOT NULL,
   `qte` int DEFAULT NULL,
   PRIMARY KEY (`numpro`,`numcde`),
-  KEY `numcde` (`numcde`),
-  CONSTRAINT `procde_ibfk_1` FOREIGN KEY (`numpro`) REFERENCES `produit` (`numPro`),
-  CONSTRAINT `procde_ibfk_2` FOREIGN KEY (`numcde`) REFERENCES `commande` (`numCde`)
+  KEY `procde_FK` (`numcde`),
+  CONSTRAINT `procde_FK` FOREIGN KEY (`numcde`) REFERENCES `commande` (`numCde`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `procde_FK_1` FOREIGN KEY (`numpro`) REFERENCES `produit` (`numPro`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- ecomm inserts
-
-INSERT INTO ecomm.utilisateur
-(numUtil, nomUtil, prenomUtil, addrUtil, passUtil, typeCompte)
-VALUES(0, '', '', '', '', '');
-
-INSERT INTO ecomm.administrateur
-(numAdmin)
-VALUES(0);
-
-INSERT INTO ecomm.client
-(numCli)
-VALUES(0);
-
-INSERT INTO ecomm.commande
-(numCde, dateCde)
-VALUES(0, now());
-
-INSERT INTO ecomm.cdecli
-(numcde, numcli)
-VALUES(0, 0);
-
-INSERT INTO ecomm.famille
-(numFam, nomFam)
-VALUES(0, '');
-
-INSERT INTO ecomm.produit
-(numPro, puPro, nomPro, famPro)
-VALUES(0, 0, '', 0);
-
-INSERT INTO ecomm.procde
-(numpro, numcde, qte)
-VALUES(0, 0, 0);
