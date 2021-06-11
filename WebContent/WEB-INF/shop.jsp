@@ -343,7 +343,7 @@
 
 										</li>
 										<li>
-											<a href="${pageContext.request.contextPath }/Commandes?&action=buy&id=${produits.numPro }">Buy
+											<a href="${pageContext.request.contextPath }/Commandes?page=addtocart&action=buy&id=${produits.numPro }">Buy
 												<i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
 										</li>
 									</ul>
