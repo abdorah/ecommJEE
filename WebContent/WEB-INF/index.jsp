@@ -202,9 +202,14 @@
 
 		<div class="row">
 			<c:forEach items="${list}" var="familles" >
-				<a href="<c:url value="/Produits">
+				<a href="<c:url value="/Login">
                    <c:param name="familleName" value="${familles.getNomFam()}" />
                   </c:url>">
+
+
+
+
+
 			<div class="col-md-4">
 				<div class="product-item">
 					<div class="product-thumb">

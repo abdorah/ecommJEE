@@ -336,11 +336,15 @@
 									<ul>
 
 										<li>
-											<a href="<c:url value="/Login">
+											<a href="<c:url value="/Commandes?&action=voircadi">
                             <c:param name="numPro" value="${produits.numPro}" />
                   </c:url>"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
 
 
+										</li>
+										<li>
+											<a href="${pageContext.request.contextPath }/Commandes?&action=buy&id=${produits.numPro }">Buy
+												<i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
 										</li>
 									</ul>
 								</div>

@@ -26,7 +26,8 @@ public class Login extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String email = request.getParameter("email");
+
+    	String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		UtilisateurDAO userDAO = new UtilisateurDAO();
 		Utilisateur user = null ;
@@ -50,8 +51,8 @@ public class Login extends HttpServlet {
 				//int numProduit= (int)(request.getAttribute("numpro"));
 
 
-				this.getServletContext().getRequestDispatcher("/Commandes").forward(request, response);
-
+				//this.getServletContext().getRequestDispatcher("/Commandes").forward(request, response);
+				this.getServletContext().getRequestDispatcher("/Produits").forward(request, response);
 			}
 
 		}
@@ -63,15 +64,23 @@ public class Login extends HttpServlet {
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//HttpSession session = request.getSession();
 
+
+		/*Cookie loginCookie = new Cookie("user",user);
+		//setting cookie to expiry in 30 mins
+		loginCookie.setMaxAge(30*60);
+		response.addCookie(loginCookie);
+
+		 */
 		this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-		int numProduit= Integer.parseInt(request.getParameter("numPro"));
-
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+numProduit);
-        // request.setAttribute("numpro",numProduit);
-		ServletContext servletcontext = getServletContext();
-		servletcontext.setAttribute("numpro", numProduit);
+		//int numProduit= Integer.parseInt(request.getParameter("numPro"));
+		String familleName= request.getParameter("familleName");
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+familleName);
+         //request.setAttribute("numpro",familleName);
+		//ServletContext servletcontext = getServletContext();
+		//servletcontext.setAttribute("familleName", familleName);
+		HttpSession session=request.getSession();
+		session.setAttribute("familleName",familleName);
 
 	}
 }
