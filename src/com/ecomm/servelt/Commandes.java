@@ -9,7 +9,6 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,29 +39,11 @@ public class Commandes extends HttpServlet {
                 doGet_get(request, response);
             }
         }
-
-        // int numPro = (int)request.getAttribute("numpro");
-        // response.sendRedirect("/Produits");
-        // this.getServletContext().getRequestDispatcher("/Produits").forward(request,
-        // response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Cookie loginCookie = null;
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("JSESSIONID")) {
-                    loginCookie = cookie;
-                    break;
-                }
-            }
-        }
-        if (loginCookie != null) {
-            response.addCookie(loginCookie);
-            this.getServletContext().getRequestDispatcher("/Produits").forward(request, response);
-        }
+
     }
 
     protected void doGet_get(HttpServletRequest request, HttpServletResponse response) {

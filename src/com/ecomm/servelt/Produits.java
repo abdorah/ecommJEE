@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,19 +17,6 @@ import com.ecomm.javaBeans.Produit;
 @WebServlet("/Produits")
 public class Produits extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Cookie loginCookie = null;
-    	Cookie[] cookies = request.getCookies();
-    	if(cookies != null){
-    	for(Cookie cookie : cookies){
-    		if(cookie.getName().equals("JSESSIONID")){
-    			loginCookie = cookie;
-    			break;
-    		}
-    	}
-    	}
-    	if(loginCookie != null){
-        	response.addCookie(loginCookie);
-    	}
         List<Produit> produits=null;
         ProduitDAO ProduitsDao=new ProduitDAO();
         try {
