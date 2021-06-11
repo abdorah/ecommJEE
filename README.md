@@ -2,13 +2,13 @@
 
 ## L'utilisateur peut
 
-* navige parmi les familles;
-* sélectionne une famille;
+* ~~navige parmi les familles;~~
+* ~~sélectionne une famille;~~
 ---
 
-* obtient les produits de la famille sélectionnée;
-* place un item dans le cadie;
-* choisir la quantité;
+* ~~obtient les produits de la famille sélectionnée;~~
+* ~~place un item dans le cadie;~~
+* ~~choisir la quantité;~~
 ---
 
 * le cadie est accessible toujours;
@@ -16,8 +16,8 @@
 * validation de la commande;
 ---
 
-* authentification;
+* ~~authentification;~~
 ---
 
-* enregistrement de la commande;
-* confirmation de l'envoi à l'adresse de l'utilisateur;
+* ~~enregistrement de la commande;~~
+* ~~confirmation de l'envoi à l'adresse de l'utilisateur;~~
