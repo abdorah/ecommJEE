@@ -95,19 +95,9 @@ doGet(request,response);
                 List<Produit>productsselected=new ArrayList<Produit>();
 
                 for (int p: nums) {
-                 //Produit produitselectioner=  produitDAO.getProduitByNum(p);
-                 productsselected.add(produitDAO.getProduitByNum(p));
-                  /* int Stock =produitselectioner.getStock();
-                   String nomproduit=produitselectioner.getNomPro();
-                   int numpro=produitselectioner.getNumPro();
-                   int prixpro=produitselectioner.getPuPro();
-                   session2.setAttribute("stock",Stock);
-                    session2.setAttribute("nomproduit",nomproduit);
-                    session2.setAttribute("numpro",numpro);
-                    session2.setAttribute("prixpro",prixpro);
-                    productsselected.add(new Produit(numPro,prixpro,nomproduit,1,Stock));
 
-                   */
+                 productsselected.add(produitDAO.getProduitByNum(p));
+
                 }
                 productsselected.forEach(p-> System.out.println(p.getNomPro()+"++"+p.getPuPro()));
                 request.setAttribute("productsselected",productsselected);
@@ -116,8 +106,11 @@ doGet(request,response);
                         .max(Integer::compare).orElse(0);
                 ++maxCommande;
                 System.out.println("shitiiiiiiiiiiiii" + maxCommande);
+
                 commandesDao.addCommande(new Commande(maxCommande, Date.valueOf(LocalDate.now())), produit, numUtil,
                         qte);
+
+                System.out.println("adddddddddddddddddddddddddded");
                 try {
                     this.getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request,response);
                 } catch (ServletException e) {
@@ -168,5 +161,19 @@ doGet(request,response);
             }
         }
         return -1;
+    }
+    private void validercomande(Commande commande, Produit produit, int numUtil, int qte){
+        CommandeDAO commandesDao=new CommandeDAO();
+        try{
+            commandesDao.addCommande(commande,produit,numUtil,qte);
+            if(commandesDao.addCommande(commande,produit,numUtil,qte)==true){
+                System.out.println("commande aded succesfuly");
+            }
+            else {
+                System.out.println("commande not aded succesfuly!!!!!!!");
+            }
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
     }
 }

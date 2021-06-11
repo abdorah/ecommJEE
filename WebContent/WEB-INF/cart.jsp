@@ -174,7 +174,7 @@
         <div class="col-md-8 col-md-offset-2">
           <div class="block">
             <div class="product-list">
-             <!-- <form method="get">-->
+             <form method="get">
 				  <table class="table">
 					  <thead>
 					  <tr>
@@ -182,6 +182,7 @@
 						  <th class="">Item Price</th>
 						  <th class="">Actions</th>
 						  <th class="">Quantité</th>
+						  <th class="">Modifier</th>
 					  </tr>
 					  </thead>
 					  <tbody>
@@ -191,17 +192,18 @@
 						  <td class="">
 							  <div class="product-info">
 								  <img width="80" src="images/shop/cart/cart-1.jpg" alt="" />
-								  <a href="#!">Sunglass num:${produits.nomPro}</a>
+								  <a href="#!">Produit:${produits.nomPro}</a>
 
-							  </div>Sunglass num:${produits.nomPro}
+							  </div>Produit:${produits.nomPro}
 						  </td>
 						  <td class="">${produits.numPro}</td>
 						  <td class="">
 							  <a class="product-remove" href="#!">Suprimer</a>
 						  </td>
 						  <td class="">
-							  <input style="height: 40px;width: 90px; margin:0 15px" type="text"class="input"name="">Quantité >
+							  <input style="height: 40px;width: 90px; margin:0 15px" type="text"class="input"name="quantite">Quantité >
 						  </td>
+
 					  </tr>
                        </c:forEach>
 
@@ -209,7 +211,7 @@
 					  </tbody>
 				  </table>
                 <a href="checkout.jsp" class="btn btn-main pull-right">Checkout</a>
-             <!-- </form>-->
+              </form>
             </div>
           </div>
         </div>
