@@ -1,3 +1,4 @@
+<%@ page import="com.mysql.cj.Session" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -202,19 +203,20 @@
 
 		<div class="row">
 			<c:forEach items="${list}" var="familles" >
-                <c:set var = "session" scope = "session" value = "${request.getSession(false)}"/>
-                <c:if test = "${session !=null}">
-				<a href="<c:url value="/Produits">
-                   <c:param name="familleName" value="${familles.getNomFam()}" />
-                  </c:url>">
 
-                </c:if>
-                <c:if test = "${session ==null}">
-                    <a href="<c:url value="/Login">
-                    <c:param name="familleName" value="${familles.getNomFam()}" />
-                </c:url>">
+					<c:choose>
+					<c:when test="${user == null}">
+						<a href="<c:url value="/Login">
+						<c:param name="familleName" value="${familles.getNomFam()}" />
+					</c:url>">
+					</c:when>
+						<c:when test="${user != null}">
+							<a href="<c:url value="/Produits">
+							<c:param name="familleName" value="${familles.getNomFam()}" />
+						</c:url>">
+						</c:when>
+						</c:choose>
 
-                </c:if>
 
 			<div class="col-md-4">
 				<div class="product-item">

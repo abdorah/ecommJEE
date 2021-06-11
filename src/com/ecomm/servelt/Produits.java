@@ -29,18 +29,19 @@ public class Produits extends HttpServlet {
             if(familleName!=null){
                 produits=ProduitsDao.getPoduitsByFamilleNom(familleName);
                 request.setAttribute("produits",produits);
-
+                this.getServletContext().getRequestDispatcher("/WEB-INF/shop.jsp").forward(request, response);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/shop.jsp").forward(request, response);
+       // this.getServletContext().getRequestDispatcher("/WEB-INF/shop.jsp").forward(request, response);
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
+       // this.getServletContext().getRequestDispatcher("/WEB-INF/shop.jsp").forward(request, response);
+        doPost(request,response);
     }
 }
