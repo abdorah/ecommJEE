@@ -202,13 +202,19 @@
 
 		<div class="row">
 			<c:forEach items="${list}" var="familles" >
-				<a href="<c:url value="/Login">
+                <c:set var = "session" scope = "session" value = "${request.getSession(false)}"/>
+                <c:if test = "${session !=null}">
+				<a href="<c:url value="/Produits">
                    <c:param name="familleName" value="${familles.getNomFam()}" />
                   </c:url>">
 
+                </c:if>
+                <c:if test = "${session ==null}">
+                    <a href="<c:url value="/Login">
+                    <c:param name="familleName" value="${familles.getNomFam()}" />
+                </c:url>">
 
-
-
+                </c:if>
 
 			<div class="col-md-4">
 				<div class="product-item">
@@ -237,7 +243,7 @@
 				</div>
 			</div>
 				</a>
-
+                </a>
 			</c:forEach>
 		</div>
 

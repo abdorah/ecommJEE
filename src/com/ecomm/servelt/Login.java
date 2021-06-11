@@ -35,6 +35,7 @@ public class Login extends HttpServlet {
 		}
 		if (user != null) {
 			HttpSession session = request.getSession();
+
 			session.setAttribute("user", user);
 			String accountType = user.getAccountType();
 			if (accountType.equals("administrateur")) {
