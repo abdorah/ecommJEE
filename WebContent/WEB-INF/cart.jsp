@@ -189,7 +189,7 @@
 						  <td class="">
 							  <div class="product-info">
 								  <img width="80" src="images/shop/cart/cart-1.jpg" alt="" />
-								  <a href="#!">Sunglass</a>
+								  <a href="#!">Sunglass num:${cart}</a>
 							  </div>
 						  </td>
 						  <td class="">$200.00</td>
