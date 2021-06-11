@@ -35,7 +35,6 @@ public class Login extends HttpServlet {
 		}
 		if (user != null) {
 			HttpSession session = request.getSession();
-
 			session.setAttribute("user", user);
 			String accountType = user.getAccountType();
 			if (accountType.equals("administrateur")) {
@@ -57,6 +56,5 @@ public class Login extends HttpServlet {
 		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + familleName);
 		HttpSession session = request.getSession();
 		session.setAttribute("familleName", familleName);
-
 	}
 }
