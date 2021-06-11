@@ -13,25 +13,6 @@ DROP TABLE cdecli;
 DROP TABLE administrateur;
 DROP TABLE utilisateur;
 
--- ecomm.administrateur definition
-
-CREATE TABLE `administrateur` (
-  `numAdmin` int NOT NULL,
-  PRIMARY KEY (`numAdmin`),
-  CONSTRAINT `administrateur_FK` FOREIGN KEY (`numAdmin`) REFERENCES `utilisateur` (`numUtil`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- ecomm.cdecli definition
-
-CREATE TABLE `cdecli` (
-  `numcde` int NOT NULL,
-  `numcli` int NOT NULL,
-  PRIMARY KEY (`numcde`,`numcli`),
-  KEY `cdecli_FK_1` (`numcli`),
-  CONSTRAINT `cdecli_FK` FOREIGN KEY (`numcde`) REFERENCES `commande` (`numCde`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `cdecli_FK_1` FOREIGN KEY (`numcli`) REFERENCES `client` (`numCli`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 -- ecomm.commande definition
 
 CREATE TABLE `commande` (
@@ -46,26 +27,6 @@ CREATE TABLE `famille` (
   `numFam` int NOT NULL,
   `nomFam` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`numFam`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- ecomm.utilisateur definition
-
-CREATE TABLE `utilisateur` (
-  `numUtil` int NOT NULL,
-  `nomUtil` varchar(100) DEFAULT NULL,
-  `prenomUtil` varchar(100) DEFAULT NULL,
-  `addrUtil` varchar(100) DEFAULT NULL,
-  `passUtil` varchar(100) DEFAULT NULL,
-  `typeCompte` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`numUtil`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- ecomm.client definition
-
-CREATE TABLE `client` (
-  `numCli` int NOT NULL,
-  PRIMARY KEY (`numCli`),
-  CONSTRAINT `client_FK` FOREIGN KEY (`numCli`) REFERENCES `utilisateur` (`numUtil`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ecomm.produit definition
@@ -91,4 +52,43 @@ CREATE TABLE `procde` (
   KEY `procde_FK` (`numcde`),
   CONSTRAINT `procde_FK` FOREIGN KEY (`numcde`) REFERENCES `commande` (`numCde`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `procde_FK_1` FOREIGN KEY (`numpro`) REFERENCES `produit` (`numPro`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ecomm.administrateur definition
+
+CREATE TABLE `administrateur` (
+  `numAdmin` int NOT NULL,
+  PRIMARY KEY (`numAdmin`),
+  CONSTRAINT `administrateur_FK` FOREIGN KEY (`numAdmin`) REFERENCES `utilisateur` (`numUtil`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ecomm.cdecli definition
+
+CREATE TABLE `cdecli` (
+  `numcde` int NOT NULL,
+  `numcli` int NOT NULL,
+  PRIMARY KEY (`numcde`,`numcli`),
+  KEY `cdecli_FK_1` (`numcli`),
+  CONSTRAINT `cdecli_FK` FOREIGN KEY (`numcde`) REFERENCES `commande` (`numCde`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `cdecli_FK_1` FOREIGN KEY (`numcli`) REFERENCES `client` (`numCli`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ecomm.client definition
+
+CREATE TABLE `client` (
+  `numCli` int NOT NULL,
+  PRIMARY KEY (`numCli`),
+  CONSTRAINT `client_FK` FOREIGN KEY (`numCli`) REFERENCES `utilisateur` (`numUtil`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ecomm.utilisateur definition
+
+CREATE TABLE `utilisateur` (
+  `numUtil` int NOT NULL,
+  `nomUtil` varchar(100) DEFAULT NULL,
+  `prenomUtil` varchar(100) DEFAULT NULL,
+  `addrUtil` varchar(100) DEFAULT NULL,
+  `passUtil` varchar(100) DEFAULT NULL,
+  `typeCompte` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`numUtil`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
