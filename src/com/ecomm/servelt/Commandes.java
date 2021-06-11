@@ -22,17 +22,52 @@ import com.ecomm.javaBeans.Utilisateur;
 
 @WebServlet("/Commandes")
 public class Commandes extends HttpServlet {
+    List<Integer>productsnums=new ArrayList<Integer>();
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if (action == null) {
-            System.out.println("no action");
-        } else {
-            if (action.equalsIgnoreCase("buy")) {
-                doGet_Buy(request, response);
+
+            String action = request.getParameter("action");
+
+            if (action == null) {
+                System.out.println("no action");
             } else {
+                if (action.equalsIgnoreCase("buy")) {
+                    doGet_Buy(request, response);
+                    doGet_get(request, response);
+                } else {
+                    doGet_get(request, response);
+                }
             }
+
+        //int numPro = (int)request.getAttribute("numpro");
+        //response.sendRedirect("/Produits");
+      //  this.getServletContext().getRequestDispatcher("/Produits").forward(request, response);
+    }
+
+
+
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+
+    }
+
+
+    protected void doGet_get(HttpServletRequest request, HttpServletResponse response){
+        String page = request.getParameter("page");
+        System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"+page);
+        if(page.equals("addtocart")) {
+            try {
+                this.getServletContext().getRequestDispatcher("/Produits").forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
         int numPro = Integer.parseInt(request.getParameter("id"));
         System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmaaaaaa" + numPro);
@@ -51,43 +86,61 @@ public class Commandes extends HttpServlet {
                 int maxCommande = commandesDao.getCommandes(numUtil).stream().map(c -> c.getNumCde())
                         .max(Integer::compare).orElse(0);
                 ++maxCommande;
-                System.out.println("shit" + maxCommande);
-                commandesDao.addCommande(new Commande(maxCommande, Date.valueOf(LocalDate.now())), produit, numUtil,
-                        qte);
+                System.out.println("shit"+maxCommande);
+                commandesDao.addCommande(new Commande(maxCommande,Date.valueOf(LocalDate.now())), produit, numUtil, qte);
+                // this.getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
+
+
+                    try {
+                        request.getRequestDispatcher("shop.jsp").forward(request, response);
+                    } catch (ServletException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
 
     }
+
 
     protected void doGet_Buy(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Produit produit = new Produit();
         HttpSession session = request.getSession();
-        if (session.getAttribute("cart") == null) {
-            List<Integer> productsnums = new ArrayList<Integer>();
-            productsnums.add(Integer.valueOf(request.getParameter("id")));
-            for (int i : productsnums) {
-                System.out.println("this is the buyed list list" + i);
-            }
-            session.setAttribute("cart", productsnums);
-        } else {
-            List<Integer> productsnums = (List<Integer>) session.getAttribute("cart");
-            int index = isExisting(Integer.parseInt(request.getParameter("id")), productsnums);
-            if (index == -1) {
-                productsnums.add(Integer.parseInt(request.getParameter("id")), 1);
+
+
+            if (session.getAttribute("cart") == null) {
+
+                productsnums.add(Integer.valueOf(request.getParameter("id")));
                 for (int i : productsnums) {
                     System.out.println("this is the buyed list list" + i);
                 }
+                session.setAttribute("cart", productsnums);
+            } else {
+                List<Integer> productsnums = (List<Integer>) session.getAttribute("cart");
+                int index = isExisting(Integer.parseInt(request.getParameter("id")), productsnums);
+                if (index == -1) {
+                    productsnums.add(Integer.parseInt(request.getParameter("id")));
+                    for (int i : productsnums) {
+                        System.out.println("this is the buyed list list" + i);
+                    }
+                }
+                session.setAttribute("cart", productsnums);
+
             }
-            session.setAttribute("cart", productsnums);
+
+           // this.getServletContext().getRequestDispatcher("/WEB-INF/shop.jsp").forward(request, response);
+
+
+            // response.sendRedirect("cart");
+            //this.getServletContext().getRequestDispatcher("/Commandes").forward(request, response);
+
         }
-        this.getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
-    }
+
 
     private int isExisting(int id, List<Integer> productsnums) {
         for (int i = 0; i < productsnums.size(); i++) {
