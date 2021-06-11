@@ -72,15 +72,9 @@ doGet(request,response);
         String page = request.getParameter("page");
         System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk" + page);
         if (page.equals("addtocart")) {
-            try {
-                this.getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request,response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
-        }
+
+
         int numPro = Integer.parseInt(request.getParameter("id"));
         System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmaaaaaa" + numPro);
         ProduitDAO produitDAO = new ProduitDAO();
@@ -96,6 +90,27 @@ doGet(request,response);
             if (qte > produit.getStock()) {
                 System.out.println("stock insiffusant");
             } else {
+                List<Integer>nums= (List<Integer>) session.getAttribute("cart");
+               //HttpSession session2 = request.getSession(true);
+                List<Produit>productsselected=new ArrayList<Produit>();
+
+                for (int p: nums) {
+                 //Produit produitselectioner=  produitDAO.getProduitByNum(p);
+                 productsselected.add(produitDAO.getProduitByNum(p));
+                  /* int Stock =produitselectioner.getStock();
+                   String nomproduit=produitselectioner.getNomPro();
+                   int numpro=produitselectioner.getNumPro();
+                   int prixpro=produitselectioner.getPuPro();
+                   session2.setAttribute("stock",Stock);
+                    session2.setAttribute("nomproduit",nomproduit);
+                    session2.setAttribute("numpro",numpro);
+                    session2.setAttribute("prixpro",prixpro);
+                    productsselected.add(new Produit(numPro,prixpro,nomproduit,1,Stock));
+
+                   */
+                }
+                productsselected.forEach(p-> System.out.println(p.getNomPro()+"++"+p.getPuPro()));
+                request.setAttribute("productsselected",productsselected);
 
                 int maxCommande = commandesDao.getCommandes(numUtil).stream().map(c -> c.getNumCde())
                         .max(Integer::compare).orElse(0);
@@ -103,14 +118,20 @@ doGet(request,response);
                 System.out.println("shitiiiiiiiiiiiii" + maxCommande);
                 commandesDao.addCommande(new Commande(maxCommande, Date.valueOf(LocalDate.now())), produit, numUtil,
                         qte);
-                // this.getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request,
-                // response);
+                try {
+                    this.getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request,response);
+                } catch (ServletException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
 
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
+    }
     }
 
     protected void doGet_Buy(HttpServletRequest request, HttpServletResponse response)

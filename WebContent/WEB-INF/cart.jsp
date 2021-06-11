@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		 pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -173,7 +174,7 @@
         <div class="col-md-8 col-md-offset-2">
           <div class="block">
             <div class="product-list">
-              <form method="post">
+             <!-- <form method="get">-->
 				  <table class="table">
 					  <thead>
 					  <tr>
@@ -184,15 +185,17 @@
 					  </tr>
 					  </thead>
 					  <tbody>
-<c:forEach items="${produits}" var="produits" >
+
+					  <c:forEach items="${productsselected}" var="produits" >
 					  <tr class="">
 						  <td class="">
 							  <div class="product-info">
 								  <img width="80" src="images/shop/cart/cart-1.jpg" alt="" />
-								  <a href="#!">Sunglass num:${cart}</a>
-							  </div>
+								  <a href="#!">Sunglass num:${produits.nomPro}</a>
+
+							  </div>Sunglass num:${produits.nomPro}
 						  </td>
-						  <td class="">$200.00</td>
+						  <td class="">${produits.numPro}</td>
 						  <td class="">
 							  <a class="product-remove" href="#!">Suprimer</a>
 						  </td>
@@ -200,13 +203,13 @@
 							  <input style="height: 40px;width: 90px; margin:0 15px" type="text"class="input"name="">Quantité >
 						  </td>
 					  </tr>
-</c:forEach>
+                       </c:forEach>
 
 
 					  </tbody>
 				  </table>
                 <a href="checkout.jsp" class="btn btn-main pull-right">Checkout</a>
-              </form>
+             <!-- </form>-->
             </div>
           </div>
         </div>
