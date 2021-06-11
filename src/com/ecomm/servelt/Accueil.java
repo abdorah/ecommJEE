@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,17 +28,28 @@ public class Accueil extends HttpServlet {
 		List<Famille> familleList = null;
 		try {
 			familleList = familles.getFamilles();
-
 			request.setAttribute("list", familleList);
 		} catch (SQLException throwables) {
 			throwables.printStackTrace();
 		}
 		this.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		Cookie loginCookie = null;
+    	Cookie[] cookies = request.getCookies();
+    	if(cookies != null){
+    	for(Cookie cookie : cookies){
+    		if(cookie.getName().equals("user")){
+    			loginCookie = cookie;
+    			break;
+    		}
+    	}
+    	}
+    	if(loginCookie != null){
+        	response.addCookie(loginCookie);
+    	}
 		doGet(request, response);
 	}
 
