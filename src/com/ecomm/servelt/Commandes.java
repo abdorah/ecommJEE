@@ -70,7 +70,7 @@ public class Commandes extends HttpServlet {
         System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk" + page);
         if (page.equals("addtocart")) {
             try {
-                this.getServletContext().getRequestDispatcher("/WEB-INF/shop.jsp").forward(request, response);
+                this.getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request,response);
             } catch (ServletException e) {
                 e.printStackTrace();
             } catch (IOException e) {
