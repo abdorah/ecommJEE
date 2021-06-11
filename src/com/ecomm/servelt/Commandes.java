@@ -1,15 +1,12 @@
 package com.ecomm.servelt;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +14,6 @@ import javax.servlet.http.HttpSession;
 
 import com.ecomm.DAO.CommandeDAO;
 import com.ecomm.DAO.ProduitDAO;
-import com.ecomm.javaBeans.Commande;
 import com.ecomm.javaBeans.Produit;
 import com.ecomm.javaBeans.Utilisateur;
 
@@ -102,15 +98,14 @@ doGet(request,response);
                 productsselected.forEach(p-> System.out.println(p.getNomPro()+"++"+p.getPuPro()));
                 request.setAttribute("productsselected",productsselected);
 
-                int maxCommande = commandesDao.getCommandes(numUtil).stream().map(c -> c.getNumCde())
-                        .max(Integer::compare).orElse(0);
-                ++maxCommande;
-                System.out.println("shitiiiiiiiiiiiii" + maxCommande);
+                // int maxCommande = commandesDao.getCommandes(numUtil).stream().map(c -> c.getNumCde())
+                //         .max(Integer::compare).orElse(0);
+                // ++maxCommande;
+                // System.out.println("shitiiiiiiiiiiiii" + maxCommande);
 
-                commandesDao.addCommande(new Commande(maxCommande, Date.valueOf(LocalDate.now())), produit, numUtil,
-                        qte);
+                int vale = commandesDao.addCommande(produit, numUtil,qte);
 
-                System.out.println("adddddddddddddddddddddddddded");
+                System.out.println("adddddddddddddddddddddddddded"+vale);
                 try {
                     this.getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request,response);
                 } catch (ServletException e) {
@@ -162,11 +157,11 @@ doGet(request,response);
         }
         return -1;
     }
-    private void validercomande(Commande commande, Produit produit, int numUtil, int qte){
+    private void validercomande(Produit produit, int numUtil, int qte){
         CommandeDAO commandesDao=new CommandeDAO();
         try{
-            commandesDao.addCommande(commande,produit,numUtil,qte);
-            if(commandesDao.addCommande(commande,produit,numUtil,qte)==true){
+            commandesDao.addCommande(produit,numUtil,qte);
+            if(commandesDao.addCommande(produit,numUtil,qte)>0){
                 System.out.println("commande aded succesfuly");
             }
             else {

@@ -58,13 +58,13 @@ public class CommandeDAO implements CommandeService {
     }
 
     @Override
-    public boolean addCommande(Commande commande, Produit produit, int numUtil, int qte) throws SQLException {
+    public int addCommande(Produit produit, int numUtil, int qte) throws SQLException {
         String queryCde = "INSERT INTO ecomm.commande(dateCde) VALUES(NOW());";
         PreparedStatement preStat = connection.prepareStatement(queryCde);
-        boolean resultCde = preStat.execute();
-        boolean resultCdPr = updateInsertCdPr(commande, produit, qte);
-        boolean result = resultCdPr & resultCde;
-        return result;
+        preStat.execute();
+        int taille = taille();
+        updateInsertCdPr(taille, produit, qte);
+        return taille;
     }
 
     @Override
@@ -79,12 +79,12 @@ public class CommandeDAO implements CommandeService {
         return result > 0 ? true : false & resultCdPr & resultCdCl;
     }
 
-    public boolean updateInsertCdPr(Commande commande, Produit produit, int qte) throws SQLException {
-        String queryCdPr = "UPDATE ecomm.procde SET qte=? WHERE numpro=? AND numcde=?;";
+    public boolean updateInsertCdPr(int numCde, Produit produit, int qte) throws SQLException {
+        String queryCdPr = "INSERT INTO ecomm.procde(numpro, numcde, qte) VALUES(?, ?, ?);";
         PreparedStatement preStat = connection.prepareStatement(queryCdPr);
-        preStat.setInt(2, produit.getNumPro());
-        preStat.setInt(3, commande.getNumCde());
-        preStat.setInt(1, qte);
+        preStat.setInt(1, produit.getNumPro());
+        preStat.setInt(2, numCde);
+        preStat.setInt(3, qte);
         boolean result = preStat.execute();
         return result;
     }
@@ -105,5 +105,16 @@ public class CommandeDAO implements CommandeService {
         preStat.setInt(2, numCli);
         boolean result = preStat.execute();
         return result;
+    }
+
+    public int taille() throws SQLException {
+        String query = "SELECT numCde FROM ecomm.commande;";
+        PreparedStatement preStat = connection.prepareStatement(query);
+        ResultSet result = preStat.executeQuery();
+        int max = 0;
+        while (result.next()) {
+            max = result.getInt("numCde");
+        }
+        return max;
     }
 }
