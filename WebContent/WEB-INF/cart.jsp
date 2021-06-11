@@ -181,7 +181,7 @@
 						  <th class="">Item Name</th>
 						  <th class="">Item Price</th>
 						  <th class="">Actions</th>
-						  <th class="">Quantité</th>
+						  <th class="">Quantitï¿½</th>
 						  <th class="">Modifier</th>
 					  </tr>
 					  </thead>
@@ -192,16 +192,15 @@
 						  <td class="">
 							  <div class="product-info">
 								  <img width="80" src="images/shop/cart/cart-1.jpg" alt="" />
-								  <a href="#!">Produit:${produits.nomPro}</a>
-
-							  </div>Produit:${produits.nomPro}
+								  <a href="#!">${produits.getNomPro()}</a>
+							  </div>
 						  </td>
-						  <td class="">${produits.numPro}</td>
+						  <td class="">${produits.getPuPro()}</td>
 						  <td class="">
 							  <a class="product-remove" href="#!">Suprimer</a>
 						  </td>
 						  <td class="">
-							  <input style="height: 40px;width: 90px; margin:0 15px" type="text"class="input"name="quantite">Quantité >
+							  <input style="height: 40px;width: 90px; margin:0 15px" type="text"class="input"name="quantite">Quantitï¿½ >
 						  </td>
 
 					  </tr>

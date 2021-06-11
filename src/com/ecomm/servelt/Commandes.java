@@ -113,8 +113,6 @@ doGet(request,response);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
