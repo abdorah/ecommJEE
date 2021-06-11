@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -71,7 +70,7 @@ public class Commandes extends HttpServlet {
 
         }
         int numPro = Integer.parseInt(request.getParameter("id"));
-        System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmaaaaaa"+numPro);
+        System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmaaaaaa" + numPro);
         ProduitDAO produitDAO = new ProduitDAO();
         CommandeDAO commandesDao = new CommandeDAO();
         try {
@@ -80,13 +79,12 @@ public class Commandes extends HttpServlet {
             Utilisateur utilisateur = (Utilisateur) session.getAttribute("user");
             int numUtil = utilisateur.getNumUtil();
             int qte = 1;
-            //Integer.parseInt(request.getParameter("qte"));
-            // produit = produitDAO.getProduitByNum(numPro);
             System.out.println(produit.getStock());
             if (qte > produit.getStock()) {
                 System.out.println("stock insiffusant");
             } else {
-                int maxCommande = commandesDao.getCommandes(numUtil).stream().map(c->c.getNumCde()).max(Integer::compare).orElse(0);
+                int maxCommande = commandesDao.getCommandes(numUtil).stream().map(c -> c.getNumCde())
+                        .max(Integer::compare).orElse(0);
                 ++maxCommande;
                 System.out.println("shit"+maxCommande);
                 commandesDao.addCommande(new Commande(maxCommande,Date.valueOf(LocalDate.now())), produit, numUtil, qte);
@@ -137,14 +135,13 @@ public class Commandes extends HttpServlet {
         }
 
 
-    private int isExisting(int id,List<Integer>productsnums) {
+    private int isExisting(int id, List<Integer> productsnums) {
         for (int i = 0; i < productsnums.size(); i++) {
-            if (productsnums.get(i)==id) {
+            if (productsnums.get(i) == id) {
                 return i;
             }
         }
         return -1;
     }
-
 
 }
