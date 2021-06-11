@@ -22,15 +22,14 @@ public class Produits extends HttpServlet {
         ProduitDAO ProduitsDao=new ProduitDAO();
         try {
             ServletContext servletcontext = getServletContext();
-            // String familleName= (String) servletcontext.getAttribute("familleName");
-            // String familleName= (String) request.getAttribute("familleName");
+
             HttpSession session=request.getSession();
             String familleName= session.getAttribute("familleName").toString();
             System.out.println("bbbbbbbbbbbbbbbbbbbbbbb"+familleName);
             if(familleName!=null){
                 produits=ProduitsDao.getPoduitsByFamilleNom(familleName);
                 request.setAttribute("produits",produits);
-                // request.setAttribute("numPro", produits.get().getNumPro());
+
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
