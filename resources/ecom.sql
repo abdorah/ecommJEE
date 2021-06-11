@@ -10,6 +10,8 @@ DROP TABLE client;
 DROP TABLE commande;
 DROP TABLE procde;
 DROP TABLE cdecli;
+DROP TABLE administrateur;
+DROP TABLE utilisateur;
 
 -- ecomm.administrateur definition
 
@@ -38,7 +40,6 @@ CREATE TABLE `commande` (
   PRIMARY KEY (`numCde`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-
 -- ecomm.famille definition
 
 CREATE TABLE `famille` (
@@ -46,7 +47,6 @@ CREATE TABLE `famille` (
   `nomFam` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`numFam`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 
 -- ecomm.utilisateur definition
 
@@ -60,7 +60,6 @@ CREATE TABLE `utilisateur` (
   PRIMARY KEY (`numUtil`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-
 -- ecomm.client definition
 
 CREATE TABLE `client` (
@@ -68,7 +67,6 @@ CREATE TABLE `client` (
   PRIMARY KEY (`numCli`),
   CONSTRAINT `client_FK` FOREIGN KEY (`numCli`) REFERENCES `utilisateur` (`numUtil`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 
 -- ecomm.produit definition
 
@@ -82,7 +80,6 @@ CREATE TABLE `produit` (
   KEY `famPro` (`famPro`),
   CONSTRAINT `produit_ibfk_1` FOREIGN KEY (`famPro`) REFERENCES `famille` (`numFam`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 
 -- ecomm.procde definition
 
