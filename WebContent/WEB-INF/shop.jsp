@@ -335,15 +335,9 @@
 								<div class="preview-meta">
 									<ul>
 
-										<li>
-											<a href="<c:url value="/Commandes?&action=voircadi">
-                            <c:param name="numPro" value="${produits.numPro}" />
-                  </c:url>"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
 
-
-										</li>
 										<li>
-											<a href="${pageContext.request.contextPath }/Commandes?page=addtocart&action=buy&id=${produits.numPro }">Buy
+											<a href="${pageContext.request.contextPath }/Commandes?page=addtocart&action=buy&id=${produits.numPro }">Acheter
 												<i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
 										</li>
 									</ul>

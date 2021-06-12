@@ -46,7 +46,7 @@
           <a class="logo" href="index.jsp">
             <img src="images/logo.png" alt="">
           </a>
-          <h2 class="text-center">Welcome Back</h2>
+          <h2 class="text-center">Bienvenue</h2>
           <form class="text-left clearfix"  method="POST" action="Login" >
             <div class="form-group">
               <input type="email" class="form-control" name="email"  placeholder="Email">
@@ -59,7 +59,7 @@
 
             </div>
           </form>
-          <p class="mt-20">New in this site ?<a href="signin.jsp"> Create New Account</a></p>
+          <p class="mt-20">New in this site ?<a href="/signin.jsp"> Cree un compte</a></p>
         </div>
       </div>
     </div>

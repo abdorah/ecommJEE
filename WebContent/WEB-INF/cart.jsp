@@ -46,7 +46,7 @@
 			<div class="col-md-4 col-xs-12 col-sm-4">
 				<div class="contact-number">
 					<i class="fa fa-mobile" aria-hidden="true"></i>
-					<span>+212- 12323-123123</span>
+					<span>+212- 610-203040</span>
 				</div>
 			</div>
 			<div class="col-md-4 col-xs-12 col-sm-4">
@@ -60,7 +60,7 @@
 								font-family="AustinBold, Austin" font-weight="bold">
 								<g id="Group" transform="translate(-108.000000, -297.000000)" fill="#000000">
 									<text id="AVIATO">
-										<tspan x="108.94" y="325">Shop</tspan>
+										<tspan x="108.94" y="325">Magasin</tspan>
 									</text>
 								</g>
 							</g>
@@ -174,7 +174,7 @@
         <div class="col-md-8 col-md-offset-2">
           <div class="block">
             <div class="product-list">
-             <form method="get">
+             <form  method="POST" action="Commandes">
 				  <table class="table">
 					  <thead>
 					  <tr>
@@ -197,10 +197,11 @@
 						  </td>
 						  <td class="">${produits.getPuPro()}</td>
 						  <td class="">
-							  <a class="product-remove" href="#!">Suprimer</a>
+							  <a class="product-remove" href="${pageContext.request.contextPath }/Commandes?page=cart&action=remove&numppro=${produits.numPro }">Suprimer</a>
 						  </td>
 						  <td class="">
-							  <input style="height: 40px;width: 90px; margin:0 15px" type="text"class="input"name="quantite">Quantit� >
+							  <input type="text" style="height: 40px;width: 90px; margin:0 15px" class="form-control" name="qte" placeholder="quantite">Quantite
+								<button type="submit">skdhskjsd</button>
 						  </td>
 
 					  </tr>
@@ -209,7 +210,8 @@
 
 					  </tbody>
 				  </table>
-                <a href="checkout.jsp" class="btn btn-main pull-right">Checkout</a>
+
+				 <a  class="btn btn-main text-center" href="${pageContext.request.contextPath }/Commandes?page=cart&action=valider">Valider</a>
               </form>
             </div>
           </div>

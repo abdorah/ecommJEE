@@ -49,7 +49,7 @@
 			<div class="col-md-4 col-xs-12 col-sm-4">
 				<div class="contact-number">
 					<i class="fa fa-mobile" aria-hidden="true"></i>
-					<span>+212- 12323-123123</span>
+					<span>+212- 610-203040</span>
 				</div>
 			</div>
 			<div class="col-md-4 col-xs-12 col-sm-4">
@@ -63,7 +63,7 @@
 								font-family="AustinBold, Austin" font-weight="bold">
 								<g id="Group" transform="translate(-108.000000, -297.000000)" fill="#000000">
 									<text id="AVIATO">
-										<tspan x="108.94" y="325">Shop</tspan>
+										<tspan x="108.94" y="325">Magasin</tspan>
 									</text>
 								</g>
 							</g>
@@ -122,8 +122,7 @@
 
 					<!-- Search -->
 					<li class="dropdown search dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
-								class="tf-ion-ios-search-strong"></i> Search</a>
+						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
 						<ul class="dropdown-menu search-dropdown">
 							<li>
 								<form action="post"><input type="search" class="form-control" placeholder="Search..."></form>
@@ -156,9 +155,9 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 text-center">
-          <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUCTS</p>
-          <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">The beauty of nature <br> is hidden in details.</h1>
-          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="shop.jsp">Shop Now</a>
+          <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUITS</p>
+          <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Bienvenue dans <br> votre boutique.</h1>
+          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="shop.jsp">Achetez</a>
         </div>
       </div>
     </div>
@@ -167,9 +166,9 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 text-left">
-          <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUCTS</p>
-          <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">The beauty of nature <br> is hidden in details.</h1>
-          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="shop.jsp">Shop Now</a>
+          <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUITS</p>
+          <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Bienvenue dans <br> votre boutique.</h1>
+          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="shop.jsp">Achetez</a>
         </div>
       </div>
     </div>
@@ -178,9 +177,9 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 text-right">
-          <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUCTS</p>
-          <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">The beauty of nature <br> is hidden in details.</h1>
-          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="shop.jsp">Shop Now</a>
+          <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUITS</p>
+          <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Bienvenue dans <br> votre boutique.</h1>
+          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="shop.jsp">Achetez</a>
         </div>
       </div>
     </div>
@@ -221,7 +220,7 @@
 			<div class="col-md-4">
 				<div class="product-item">
 					<div class="product-thumb">
-						<span class="bage">Sale</span>
+						<span class="bage">Vente</span>
 
 						<img class="img-responsive" src="images/shop/products/product-1.jpg" alt="product-img" />
 
@@ -239,8 +238,8 @@
 					</div>
 
 					<div class="product-content">
-						<h4><a href="product-single.jsp">${familles.getNomFam()}</a></h4>
-						<p class="price">Num:${familles.getNumeroFam()}</p>
+						<h4><a>${familles.getNomFam()}</a></h4>
+
 					</div>
 				</div>
 			</div>
@@ -261,14 +260,14 @@ Start Call To Action
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<div class="title">
-					<h2>SUBSCRIBE TO NEWSLETTER</h2>
+					<h2>Abonnez-vous maintenant!</h2>
 					<p>Ecommerce java EE application <br> facilis numquam impedit ut sequi. Minus facilis vitae excepturi sit laboriosam.</p>
 				</div>
 				<div class="col-lg-6 col-md-offset-3">
 				    <div class="input-group subscription-form">
 				      <input type="text" class="form-control" placeholder="Enter Your Email Address">
 				      <span class="input-group-btn">
-				        <button class="btn btn-main" type="button">Subscribe Now!</button>
+				        <button class="btn btn-main" type="button">Abonnez-vous maintenant!</button>
 				      </span>
 				    </div><!-- /input-group -->
 			  </div><!-- /.col-lg-6 -->
@@ -289,17 +288,15 @@ Start Call To Action
 					<li>
 						<a href="contact.jsp">CONTACT</a>
 					</li>
+
 					<li>
-						<a href="shop.jsp">SHOP</a>
-					</li>
-					<li>
-						<a href="pricing.jsp">Pricing</a>
+						<a href="pricing.jsp">Prix</a>
 					</li>
 					<li>
 						<a href="contact.jsp">PRIVACY POLICY</a>
 					</li>
 				</ul>
-				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
+				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by heart</p>
 			</div>
 		</div>
 	</div>

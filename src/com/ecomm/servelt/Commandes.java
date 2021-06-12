@@ -19,23 +19,57 @@ import com.ecomm.javaBeans.Utilisateur;
 
 @WebServlet("/Commandes")
 public class Commandes extends HttpServlet {
+    String actionBuyorvalidate="nothin";
+
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        String action = request.getParameter("action");
+
+        if (action == null) {
+            System.out.println("no action");
+
+            String test=request.getParameter("qte");
+            System.out.println("teeeeeessssssssssssssssssttttttttttttttttt"+test);
+        } else {
+            if (action.equalsIgnoreCase("buy")) {
+                actionBuyorvalidate="buy";
+                doGet_Buy(request, response);
+                doGet_showproducts_in_cart(request, response);
+            }
+            if (action.equalsIgnoreCase("remove")){
+                doGet_remove(request,response);
+               // doGet_showproducts_in_cart(request, response);
+            }
+
+                if(action.equalsIgnoreCase("valider")){
+
+                System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+            } else {
+                doGet_showproducts_in_cart(request, response);
+            }
+        }
+
+    }
+
+
+
+
+
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String action = request.getParameter("action");
+        processRequest(request, response);
+        /*
+        if(page.equalsIgnoreCase("cart")){
+                int vale = commandesDao.addCommande(produit, numUtil,qte);
 
-        if (action == null) {
-            System.out.println("no action");
-        } else {
-            if (action.equalsIgnoreCase("buy")) {
-                doGet_Buy(request, response);
-                doGet_get(request, response);
-            } else {
-                doGet_get(request, response);
+                System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjj"+vale);
             }
-        }
+         */
 
         // int numPro = (int)request.getAttribute("numpro");
         // response.sendRedirect("/Produits");
@@ -43,8 +77,17 @@ public class Commandes extends HttpServlet {
         // response);
     }
 
+
+
+
+
+
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        processRequest(request, response);
+
         /*Cookie loginCookie = null;
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
@@ -64,12 +107,31 @@ public class Commandes extends HttpServlet {
 doGet(request,response);
     }
 
-    protected void doGet_get(HttpServletRequest request, HttpServletResponse response) {
+    protected void doGet_remove(HttpServletRequest request, HttpServletResponse response){
+        HttpSession session = request.getSession();
+        List<Integer>nums= (List<Integer>) session.getAttribute("cart");
+       int numppro= Integer.parseInt(request.getParameter("numppro"));
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums.get(i) == numppro) {
+                nums.remove(i);
+            }
+        }
+        try {
+            this.getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+    protected void doGet_showproducts_in_cart(HttpServletRequest request, HttpServletResponse response) {
         String page = request.getParameter("page");
         System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk" + page);
-        if (page.equals("addtocart")) {
-
-
+        if (page.equals("addtocart")||page.equals("cart")) {
 
         int numPro = Integer.parseInt(request.getParameter("id"));
         System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmaaaaaa" + numPro);
@@ -97,15 +159,15 @@ doGet(request,response);
                 }
                 productsselected.forEach(p-> System.out.println(p.getNomPro()+"++"+p.getPuPro()));
                 request.setAttribute("productsselected",productsselected);
+                /*if(actionBuyorvalidate.equalsIgnoreCase("cart")){
+                    int vale = commandesDao.addCommande(produit, numUtil,qte);
 
-                // int maxCommande = commandesDao.getCommandes(numUtil).stream().map(c -> c.getNumCde())
-                //         .max(Integer::compare).orElse(0);
-                // ++maxCommande;
-                // System.out.println("shitiiiiiiiiiiiii" + maxCommande);
+                    System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrrr"+vale);
+                }
 
-                int vale = commandesDao.addCommande(produit, numUtil,qte);
+                 */
 
-                System.out.println("adddddddddddddddddddddddddded"+vale);
+
                 try {
                     this.getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request,response);
                 } catch (ServletException e) {
@@ -117,7 +179,9 @@ doGet(request,response);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
     }
+
     }
 
     protected void doGet_Buy(HttpServletRequest request, HttpServletResponse response)
