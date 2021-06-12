@@ -337,7 +337,7 @@
 
 										<li>
 											<a href="<c:url value="/Commandes?&action=voircadi">
-                            <c:param name="numPro" value="${produits.numPro}" />
+                            <c:param name="numPro" value="${produits.getNumPro()}" />
                   </c:url>"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
 
 
