@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.*;
 
 import com.ecomm.DAO.CommandeDAO;
 import com.ecomm.DAO.ProduitDAO;
@@ -29,10 +30,16 @@ public class Commandes extends HttpServlet {
 
         if (action == null) {
             System.out.println("no action");
+            String quantite=request.getParameter("qte");
 
-            String test=request.getParameter("qte");
-            System.out.println("teeeeeessssssssssssssssssttttttttttttttttt"+test);
+            int numProduitamodifier= Integer.parseInt(request.getParameter("numpr"));
+            System.out.println("teeeeeesssssssssssssssssstttttttttttttttttiiiiiiii"+numProduitamodifier+"klkklkk"+quantite);
+
         } else {
+            if(action.equalsIgnoreCase("modify")){
+                String test=request.getParameter("qte");
+                System.out.println("teeeeeesssssssssssssssssstttttttttttttttttaaaaaa"+test);
+            }
             if (action.equalsIgnoreCase("buy")) {
                 actionBuyorvalidate="buy";
                 doGet_Buy(request, response);

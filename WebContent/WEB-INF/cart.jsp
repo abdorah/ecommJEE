@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		 pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -174,7 +175,7 @@
         <div class="col-md-8 col-md-offset-2">
           <div class="block">
             <div class="product-list">
-             <form  method="POST" action="Commandes">
+             <form  method="GET"  id="myform" action="Commandes">
 				  <table class="table">
 					  <thead>
 					  <tr>
@@ -186,7 +187,12 @@
 					  </tr>
 					  </thead>
 					  <tbody>
+					  <script>
+						  function submitform() {
+							  document.getElementById('myform').submit();
 
+						  }
+					  </script>
 					  <c:forEach items="${productsselected}" var="produits" >
 					  <tr class="">
 						  <td class="">
@@ -200,8 +206,22 @@
 							  <a class="product-remove" href="${pageContext.request.contextPath }/Commandes?page=cart&action=remove&numppro=${produits.numPro }">Suprimer</a>
 						  </td>
 						  <td class="">
-							  <input type="text" style="height: 40px;width: 90px; margin:0 15px" class="form-control" name="qte" placeholder="quantite">Quantite
-								<button type="submit">skdhskjsd</button>
+
+							  <input type="text" style="height: 40px;width: 90px; margin:0 15px" class="form-control" name="qte"  placeholder="quantite">Quantite
+
+						  </td>
+
+							<td class="">
+
+								<a href="${pageContext.request.contextPath }/Commandes?page=modifier&qte=${qt}&action=modify&produit=${produits.numPro}" >
+								Modifier
+								</a>
+
+								<button onclick="alert('modifié!!')" class="btn btn-primary text-center"  type="submit">Modifier</button>
+
+							</td>
+						  <td class="">
+							  <input type="number" action="modifier" name="numpr" value="${produits.numPro }">
 						  </td>
 
 					  </tr>
@@ -213,6 +233,7 @@
 
 				 <a  class="btn btn-main text-center" href="${pageContext.request.contextPath }/Commandes?page=cart&action=valider">Valider</a>
               </form>
+
             </div>
           </div>
         </div>
