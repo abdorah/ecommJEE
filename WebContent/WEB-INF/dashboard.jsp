@@ -121,30 +121,16 @@
 									<tr>
 										<th>Commande ID</th>
 										<th>Date</th>
-										<th>Articles</th>
-										<th>Prix total</th>
 										<th></th>
 									</tr>
 								</thead>
 								<tbody>
+									<c:forEach items="${commandes}" var="commandes" >
 									<tr>
-										<td><a href="#!">#252125</a></td>
-										<td>Mar 25, 2016</td>
-										<td>2</td>
-										<td>$ 99.00</td>
+										<td>${commandes.getNumCde()}</td>
+										<td>${commandes.getDateCde().toString()}</td>
 									</tr>
-									<tr>
-										<td><a href="#!">#252125</a></td>
-										<td>Mar 25, 2016</td>
-										<td>2</td>
-										<td>$ 99.00</td>
-									</tr>
-									<tr>
-										<td><a href="#!">#252125</a></td>
-										<td>Mar 25, 2016</td>
-										<td>2</td>
-										<td>$ 99.00</td>
-									</tr>
+								</c:forEach>
 								</tbody>
 							</table>
 						</div>

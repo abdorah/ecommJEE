@@ -58,6 +58,22 @@ public class CommandeDAO implements CommandeService {
     }
 
     @Override
+    public List<Commande> getAllCommandes() throws SQLException {
+        String query = "SELECT numCde, dateCde FROM ecomm.commande;";
+        PreparedStatement preStat = connection.prepareStatement(query);
+        ResultSet result = preStat.executeQuery();
+        Commande commande = new Commande();
+        List<Commande> commandes = new ArrayList<Commande>();
+        while (result.next()) {
+            int numCde = result.getInt("numCde");
+            Date date = result.getDate("dateCde");
+            commande = new Commande(numCde, date);
+            commandes.add(commande);
+        }
+        return commandes;
+    }
+
+    @Override
     public int addCommande(Produit produit, int numUtil, int qte) throws SQLException {
         String queryCde = "INSERT INTO ecomm.commande(dateCde) VALUES(NOW());";
         PreparedStatement preStat = connection.prepareStatement(queryCde);

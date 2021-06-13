@@ -2,6 +2,7 @@ package com.ecomm.servelt;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ecomm.DAO.CommandeDAO;
 import com.ecomm.DAO.UtilisateurDAO;
+import com.ecomm.javaBeans.Commande;
 import com.ecomm.javaBeans.Utilisateur;
 
 @WebServlet("/Login")
@@ -38,6 +41,14 @@ public class Login extends HttpServlet {
 			session.setAttribute("user", user);
 			String accountType = user.getAccountType();
 			if (accountType.equals("administrateur")) {
+				CommandeDAO commandeDAO = new CommandeDAO();
+				List<Commande> commandes;
+				try {
+					commandes = commandeDAO.getAllCommandes();
+					request.setAttribute("commandes", commandes);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 				this.getServletContext().getRequestDispatcher("/Administrateur").forward(request, response);
 			} else if (accountType.equals("client")) {
 				this.getServletContext().getRequestDispatcher("/Accueil").forward(request, response);
