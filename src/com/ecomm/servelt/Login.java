@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ecomm.DAO.CommandeDAO;
+import com.ecomm.DAO.ProduitDAO;
 import com.ecomm.DAO.UtilisateurDAO;
 import com.ecomm.javaBeans.Commande;
 import com.ecomm.javaBeans.Utilisateur;

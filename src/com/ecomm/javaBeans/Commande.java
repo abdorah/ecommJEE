@@ -11,6 +11,8 @@ public class Commande {
     }
 
     public Commande(int num, Date date) {
+        this.numCde = num;
+        this.dateCde = date;
     }
 
     public int getNumCde() {
