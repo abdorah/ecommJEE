@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,11 +21,16 @@ public class Produits extends HttpServlet {
         ProduitDAO ProduitsDao=new ProduitDAO();
         try {
             HttpSession session=request.getSession();
-            String familleName= session.getAttribute("familleName").toString();
-            System.out.println("bbbbbbbbbbbbbbbbbbbbbbb"+familleName);
+            String familleName = request.getParameter("familleName");
+            System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + familleName);
+            session.setAttribute("familleName", familleName);
             if(familleName!=null){
+                // String familleName= session.getAttribute("familleName").toString();
+                System.out.println("bbbbbbbbbbbbbbbbbbbbbbb"+familleName);
                 produits=ProduitsDao.getPoduitsByFamilleNom(familleName);
                 request.setAttribute("produits",produits);
+                this.getServletContext().getRequestDispatcher("/WEB-INF/shop.jsp").forward(request, response);
+            } else {
                 this.getServletContext().getRequestDispatcher("/WEB-INF/shop.jsp").forward(request, response);
             }
         } catch (SQLException throwables) {

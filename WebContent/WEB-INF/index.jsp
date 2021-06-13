@@ -55,8 +55,7 @@
 			<div class="col-md-4 col-xs-12 col-sm-4">
 				<!-- Site Logo -->
 				<div class="logo text-center">
-					<a href="index.jsp">
-						<!-- replace logo here -->
+
 						<svg width="135px" height="29px" viewBox="0 0 155 29" version="1.1" xmlns="http://www.w3.org/2000/svg"
 							xmlns:xlink="http://www.w3.org/1999/xlink">
 							<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-size="40"
@@ -86,7 +85,7 @@
         <div class="col-lg-8 text-center">
           <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUITS</p>
           <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Bienvenue dans <br> votre boutique.</h1>
-          <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn">Achetez</p>
+          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="<c:url value="/Login"></c:url>">Se connecter</a>
         </div>
       </div>
     </div>
@@ -97,7 +96,7 @@
         <div class="col-lg-8 text-left">
           <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUITS</p>
           <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Bienvenue dans <br> votre boutique.</h1>
-          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="shop.jsp">Achetez</a>
+          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="<c:url value="/Login"></c:url>">Se connecter</a>
         </div>
       </div>
     </div>
@@ -108,7 +107,7 @@
         <div class="col-lg-8 text-right">
           <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUITS</p>
           <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Bienvenue dans <br> votre boutique.</h1>
-          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="shop.jsp">Achetez</a>
+          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="<c:url value="/Login"></c:url>">Se connecter</a>
         </div>
       </div>
     </div>

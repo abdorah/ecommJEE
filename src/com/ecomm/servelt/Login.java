@@ -38,9 +38,9 @@ public class Login extends HttpServlet {
 			session.setAttribute("user", user);
 			String accountType = user.getAccountType();
 			if (accountType.equals("administrateur")) {
-				this.getServletContext().getRequestDispatcher("/WEB-INF/homeAdmin.jsp").forward(request, response);
+				this.getServletContext().getRequestDispatcher("/Administrateur").forward(request, response);
 			} else if (accountType.equals("client")) {
-				this.getServletContext().getRequestDispatcher("/Produits").forward(request, response);
+				this.getServletContext().getRequestDispatcher("/Accueil").forward(request, response);
 			}
 		} else {
 			String message = "Email et/ou Mot de passe incorrect(s)";

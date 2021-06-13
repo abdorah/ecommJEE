@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		 pageEncoding="ISO-8859-1"%>
+		 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,15 +52,14 @@
 			<div class="col-md-4 col-xs-12 col-sm-4">
 				<!-- Site Logo -->
 				<div class="logo text-center">
-					<a href="index.jsp">
-						<!-- replace logo here -->
+
 						<svg width="135px" height="29px" viewBox="0 0 155 29" version="1.1" xmlns="http://www.w3.org/2000/svg"
 							xmlns:xlink="http://www.w3.org/1999/xlink">
 							<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-size="40"
 								font-family="AustinBold, Austin" font-weight="bold">
 								<g id="Group" transform="translate(-108.000000, -297.000000)" fill="#000000">
 									<text id="AVIATO">
-										<tspan x="108.94" y="325">Shop</tspan>
+										<tspan x="108.94" y="325">Magasin</tspan>
 									</text>
 								</g>
 							</g>
@@ -67,249 +67,27 @@
 					</a>
 				</div>
 			</div>
-			<div class="col-md-4 col-xs-12 col-sm-4">
-				<!-- Cart -->
-				<ul class="top-menu text-right list-inline">
-					<li class="dropdown cart-nav dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
-								class="tf-ion-android-cart"></i>Cart</a>
-						<div class="dropdown-menu cart-dropdown">
-							<!-- Cart Item -->
-							<div class="media">
-								<a class="pull-left" href="#!">
-									<img class="media-object" src="images/shop/cart/cart-1.jpg" alt="image" />
-								</a>
-								<div class="media-body">
-									<h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
-									<div class="cart-price">
-										<span>1 x</span>
-										<span>1250.00</span>
-									</div>
-									<h5><strong>$1200</strong></h5>
-								</div>
-								<a href="#!" class="remove"><i class="tf-ion-close"></i></a>
-							</div><!-- / Cart Item -->
-							<!-- Cart Item -->
-							<div class="media">
-								<a class="pull-left" href="#!">
-									<img class="media-object" src="images/shop/cart/cart-2.jpg" alt="image" />
-								</a>
-								<div class="media-body">
-									<h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
-									<div class="cart-price">
-										<span>1 x</span>
-										<span>1250.00</span>
-									</div>
-									<h5><strong>$1200</strong></h5>
-								</div>
-								<a href="#!" class="remove"><i class="tf-ion-close"></i></a>
-							</div><!-- / Cart Item -->
-
-							<div class="cart-summary">
-								<span>Total</span>
-								<span class="total-price">$1799.00</span>
-							</div>
-							<ul class="text-center cart-buttons">
-								<li><a href="cart.jsp" class="btn btn-small">View Cart</a></li>
-								<li><a href="checkout.jsp" class="btn btn-small btn-solid-border">Checkout</a></li>
-							</ul>
-						</div>
-
-					</li><!-- / Cart -->
-
-					<!-- Search -->
-					<li class="dropdown search dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
-								class="tf-ion-ios-search-strong"></i> Search</a>
-						<ul class="dropdown-menu search-dropdown">
-							<li>
-								<form action="post"><input type="search" class="form-control" placeholder="Search..."></form>
-							</li>
-						</ul>
-					</li><!-- / Search -->
-
-					<!-- Languages -->
-					<li class="commonSelect">
-						<select class="form-control">
-							<option>EN</option>
-							<option>DE</option>
-							<option>FR</option>
-							<option>ES</option>
-						</select>
-					</li><!-- / Languages -->
-
-				</ul><!-- / .nav .navbar-nav .navbar-right -->
-			</div>
 		</div>
 	</div>
 </section><!-- End Top Header Bar -->
 
-
-<!-- Main Menu Section -->
-<section class="menu">
-	<nav class="navbar navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<h2 class="menu-title">Main Menu</h2>
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-					aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-
-			</div><!-- / .navbar-header -->
-
-			<!-- Navbar Links -->
-			<div id="navbar" class="navbar-collapse collapse text-center">
-				<ul class="nav navbar-nav">
-
-					<!-- Home -->
-					<li class="dropdown ">
-						<a href="index.jsp">Home</a>
-					</li><!-- / Home -->
-
-
-					<!-- Elements -->
-					<li class="dropdown dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
-							role="button" aria-haspopup="true" aria-expanded="false">Shop <span
-								class="tf-ion-ios-arrow-down"></span></a>
-						<div class="dropdown-menu">
-							<div class="row">
-
-								<!-- Basic -->
-								<div class="col-lg-6 col-md-6 mb-sm-3">
-									<ul>
-										<li class="dropdown-header">Pages</li>
-										<li role="separator" class="divider"></li>
-										<li><a href="shop.jsp">Shop</a></li>
-										<li><a href="checkout.jsp">Checkout</a></li>
-										<li><a href="cart.jsp">Cart</a></li>
-										<li><a href="pricing.jsp">Pricing</a></li>
-										<li><a href="confirmation.jsp">Confirmation</a></li>
-
-									</ul>
-								</div>
-
-								<!-- Layout -->
-								<div class="col-lg-6 col-md-6 mb-sm-3">
-									<ul>
-										<li class="dropdown-header">Layout</li>
-										<li role="separator" class="divider"></li>
-										<li><a href="product-single.jsp">Product Details</a></li>
-										<li><a href="shop-sidebar.jsp">Shop With Sidebar</a></li>
-
-									</ul>
-								</div>
-
-							</div><!-- / .row -->
-						</div><!-- / .dropdown-menu -->
-					</li><!-- / Elements -->
-
-
-					<!-- Pages -->
-					<li class="dropdown full-width dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
-							role="button" aria-haspopup="true" aria-expanded="false">Pages <span
-								class="tf-ion-ios-arrow-down"></span></a>
-						<div class="dropdown-menu">
-							<div class="row">
-
-								<!-- Introduction -->
-								<div class="col-sm-3 col-xs-12">
-									<ul>
-										<li class="dropdown-header">Introduction</li>
-										<li role="separator" class="divider"></li>
-										<li><a href="contact.jsp">Contact Us</a></li>
-										<li><a href="about.jsp">About Us</a></li>
-										<li><a href="404.jsp">404 Page</a></li>
-										<li><a href="coming-soon.jsp">Coming Soon</a></li>
-										<li><a href="faq.jsp">FAQ</a></li>
-									</ul>
-								</div>
-
-								<!-- Contact -->
-								<div class="col-sm-3 col-xs-12">
-									<ul>
-										<li class="dropdown-header">Dashboard</li>
-										<li role="separator" class="divider"></li>
-										<li><a href="dashboard.jsp">User Interface</a></li>
-										<li><a href="order.jsp">Orders</a></li>
-										<li><a href="address.jsp">Address</a></li>
-										<li><a href="profile-details.jsp">Profile Details</a></li>
-									</ul>
-								</div>
-
-								<!-- Utility -->
-								<div class="col-sm-3 col-xs-12">
-									<ul>
-										<li class="dropdown-header">Utility</li>
-										<li role="separator" class="divider"></li>
-										<li><a href="login.jsp">Login Page</a></li>
-										<li><a href="signin.jsp">Signin Page</a></li>
-										<li><a href="forget-password.jsp">Forget Password</a></li>
-									</ul>
-								</div>
-
-								<!-- Mega Menu -->
-								<div class="col-sm-3 col-xs-12">
-									<a href="shop.jsp">
-										<img class="img-responsive" src="images/shop/header-img.jpg" alt="menu image" />
-									</a>
-								</div>
-							</div><!-- / .row -->
-						</div><!-- / .dropdown-menu -->
-					</li><!-- / Pages -->
-
-
-
-					<!-- Blog -->
-					<li class="dropdown dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
-							role="button" aria-haspopup="true" aria-expanded="false">Blog <span
-								class="tf-ion-ios-arrow-down"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="blog-left-sidebar.jsp">Blog Left Sidebar</a></li>
-							<li><a href="blog-right-sidebar.jsp">Blog Right Sidebar</a></li>
-							<li><a href="blog-full-width.jsp">Blog Full Width</a></li>
-							<li><a href="blog-grid.jsp">Blog 2 Columns</a></li>
-							<li><a href="blog-single.jsp">Blog Single</a></li>
-						</ul>
-					</li><!-- / Blog -->
-
-					<!-- Shop -->
-					<li class="dropdown dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
-							role="button" aria-haspopup="true" aria-expanded="false">Elements <span
-								class="tf-ion-ios-arrow-down"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="typography.jsp">Typography</a></li>
-							<li><a href="buttons.jsp">Buttons</a></li>
-							<li><a href="alerts.jsp">Alerts</a></li>
-						</ul>
-					</li><!-- / Blog -->
-				</ul><!-- / .nav .navbar-nav -->
-
-			</div>
-			<!--/.navbar-collapse -->
-		</div><!-- / .container -->
-	</nav>
-</section>
 
 <section class="page-header">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="content">
-					<h1 class="page-name">Dashboard</h1>
+					<h1 class="page-name">Administration</h1>
 					<ol class="breadcrumb">
-						<li><a href="index.jsp">Home</a></li>
-						<li class="active">my account</li>
+						<li><a href="${pageContext.request.contextPath }/Accueil">Acceuil</a></li>
+						<li class="active">Administration</li>
 					</ol>
 				</div>
 			</div>
+			<div>
+				<a href="<c:url value="/Logout">
+				</c:url>">Deconnexion</a>
+		</div>
 		</div>
 	</div>
 </section>
@@ -319,33 +97,32 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<ul class="list-inline dashboard-menu text-center">
+				<!-- <ul class="list-inline dashboard-menu text-center">
 					<li><a class="active" href="dashboard.jsp">Dashboard</a></li>
 					<li><a href="order.jsp">Orders</a></li>
 					<li><a href="address.jsp">Address</a></li>
 					<li><a href="profile-details.jsp">Profile Details</a></li>
-				</ul>
+				</ul> -->
 				<div class="dashboard-wrapper user-dashboard">
 					<div class="media">
 						<div class="pull-left">
-							<img class="media-object user-img" src="images/avater.jpg" alt="Image">
+							<!-- <img class="media-object user-img" src="images/avater.jpg" alt="Image"> -->
 						</div>
 						<div class="media-body">
-							<h2 class="media-heading">Welcome Adam Smith</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, iure, est. Sit mollitia est maxime! Eos
-								cupiditate tempore, tempora omnis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, nihil. </p>
+							<h2 class="media-heading"></h2>
+							<p></p>
 						</div>
 					</div>
 					<div class="total-order mt-20">
-						<h4>Total Orders</h4>
+						<h4>Table des commandes</h4>
 						<div class="table-responsive">
 							<table class="table">
 								<thead>
 									<tr>
-										<th>Order ID</th>
+										<th>Commande ID</th>
 										<th>Date</th>
-										<th>Items</th>
-										<th>Total Price</th>
+										<th>Articles</th>
+										<th>Prix total</th>
 										<th></th>
 									</tr>
 								</thead>
