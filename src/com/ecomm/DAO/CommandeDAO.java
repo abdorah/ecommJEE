@@ -63,6 +63,11 @@ public class CommandeDAO implements CommandeService {
         PreparedStatement preStat = connection.prepareStatement(query);
         ResultSet result = preStat.executeQuery();
         List<Commande> commandes = new ArrayList<Commande>();
+        if (result.next()) {
+            int numCde = result.getInt(1);
+            Date date = result.getDate(2);
+            commandes.add(new Commande(numCde, date));
+        }
         while (result.next()) {
             int numCde = result.getInt(1);
             Date date = result.getDate(2);
