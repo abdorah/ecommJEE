@@ -69,7 +69,7 @@ doGet_showproducts_in_cart(request, response);
             }
 
                 if(action.equalsIgnoreCase("valider")){
-
+        doGet_showproducts_in_cart(request, response);
                 System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjj");
             } else {
                 doGet_showproducts_in_cart(request, response);
@@ -157,7 +157,16 @@ doGet(request,response);
         String page = request.getParameter("page");
         System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk" + page);
         String action = request.getParameter("action");
-        if (action == null|| page.equals("addtocart")||page.equals("cart")) {
+        if (action!= null && action.equals("valider")) {
+            try {
+                    this.getServletContext().getRequestDispatcher("/WEB-INF/confirmation.jsp").forward(request,response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else if (action == null||  (page.equals("addtocart") && !action.equals("valider"))||(page.equals("cart")&& !action.equals("valider"))) {
             int numPro =0;
             if (action ==  null) {
                 numPro = Integer.parseInt(request.getParameter("numpr"));
@@ -200,7 +209,8 @@ doGet(request,response);
 
 
                 try {
-                    this.getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request,response);
+                        this.getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request,response);
+                    
                 } catch (ServletException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
