@@ -141,13 +141,14 @@ doGet(request,response);
                 nums.remove(i);
             }
         }
-        try {
-            this.getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request,response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // try {
+            doGet_showproducts_in_cart(request, response);
+            //this.getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request,response);
+        // } catch (ServletException e) {
+        //     e.printStackTrace();
+        // } catch (IOException e) {
+        //     e.printStackTrace();
+        // }
 
     }
 
@@ -170,7 +171,10 @@ doGet(request,response);
             int numPro =0;
             if (action ==  null) {
                 numPro = Integer.parseInt(request.getParameter("numpr"));
-            } else {
+            } else if (action != null && action.equals("remove")) {
+                numPro = Integer.parseInt(request.getParameter("numppro"));
+            } 
+            else {
                 numPro = Integer.parseInt(request.getParameter("id"));
             }
         

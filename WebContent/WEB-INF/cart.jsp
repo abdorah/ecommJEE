@@ -157,7 +157,7 @@
 				<div class="content">
 					<h1 class="page-name">cadie</h1>
 					<ol class="breadcrumb">
-						<li><a href="index.jsp">Home</a></li>
+						<li><a href="${pageContext.request.contextPath }/Accueil">Acceuil</a></li>
 						<li class="active">cadie</li>
 					</ol>
 				</div>
@@ -207,12 +207,12 @@
 						  </td>
 						  <td class="">
 
-							  <input type="text" style="height: 40px;width: 90px; margin:0 15px" class="form-control" id="qte" name="qte"  value="${param.qte}" placeholder="quantite">Quantite
+							  <input type="text" style="height: 40px;width: 90px; margin:0 15px" class="form-control" id="qte" name="qte"  value="${param.qte}" placeholder="quantite">
 
 						  </td>
 							<td class="">
 								<c:out value="${param.name}"/>
-								<a href="${pageContext.request.contextPath }/Commandes?page=modifier&action=modify&produit=${produits.numPro}&qte=<c:out value="${param.name}"/>">Some Shit</a>
+								
 								<!-- <a href="" >
 									Modifier
 								</a> -->
@@ -222,7 +222,7 @@
 
 							</td>
 						  <td class="">
-							  <input type="number" action="modifier" name="numpr" value="${produits.numPro }">
+							  <input type="number" action="modifier" name="numpr" value="${produits.numPro }" hidden>
 						  </td>
 
 					  </tr>
@@ -234,7 +234,7 @@
 
 				 <a  class="btn btn-main text-center" href="${pageContext.request.contextPath }/Commandes?page=cart&action=valider">Valider</a>
               </form>
-
+			  <a href="${pageContext.request.contextPath }/Accueil" class="btn btn-main mt-20">Continuer les Achats</a>
             </div>
           </div>
         </div>
