@@ -74,9 +74,14 @@ public class CommandeDAO implements CommandeService {
         preStat = connection.prepareStatement(query);
         preStat.setInt(1, numCde);
         int result = preStat.executeUpdate();
-        boolean resultCdPr = updateDeleteCdPr(numCde, numPro);
-        boolean resultCdCl = updateDeleteCdCl(numCde, numCli);
-        return result > 0 ? true : false & resultCdPr & resultCdCl;
+        // boolean resultCdPr = updateDeleteCdPr(numCde, numPro);
+        // boolean resultCdCl = updateDeleteCdCl(numCde, numCli);
+        return result > 0 ;//? true : false & resultCdPr & resultCdCl;
+    }
+
+    public void updateCommande(int numCde, Produit produit, int numCli, int qte) throws SQLException {
+        supprimerCommande(numCde, produit.getNumPro(), numCli);
+        addCommande(produit, numCli, qte);
     }
 
     public boolean updateInsertCdPr(int numCde, Produit produit, int qte) throws SQLException {

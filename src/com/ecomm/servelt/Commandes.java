@@ -3,6 +3,7 @@ package com.ecomm.servelt;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -15,8 +16,10 @@ import javax.swing.*;
 
 import com.ecomm.DAO.CommandeDAO;
 import com.ecomm.DAO.ProduitDAO;
+import com.ecomm.DAO.UtilisateurDAO;
 import com.ecomm.javaBeans.Produit;
 import com.ecomm.javaBeans.Utilisateur;
+import com.mysql.cj.util.Util;
 
 @WebServlet("/Commandes")
 public class Commandes extends HttpServlet {
@@ -34,11 +37,26 @@ public class Commandes extends HttpServlet {
 
             int numProduitamodifier= Integer.parseInt(request.getParameter("numpr"));
             System.out.println("teeeeeesssssssssssssssssstttttttttttttttttiiiiiiii"+numProduitamodifier+"klkklkk"+quantite);
-
+            String[] quantites = request.getParameterValues("qte");
+            String[] numPros = request.getParameterValues("numpr");
+            System.out.println("teeeeeesssssssssssssssssstttttttqqqttttttttttaaaaaa");
+            Arrays.stream(quantites).forEach(System.out::println);
+            System.out.println("teeeeeesssssssssssssssssstttttttttNNNNttttttttaaaaaa");
+            Arrays.stream(numPros).forEach(System.out::println);
+            CommandeDAO commandeDAO = new CommandeDAO();
+            ProduitDAO produitDAO = new ProduitDAO();
+            HttpSession session = request.getSession();
+            for (int i = 0; i < numPros.length; i++) {
+                try {
+                    commandeDAO.addCommande(produitDAO.getProduitByNum(Integer.parseInt(numPros[i])), ((Utilisateur)session.getAttribute("user")).getNumUtil(), Integer.parseInt(quantites[i]));
+                } catch (NumberFormatException | SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+doGet_showproducts_in_cart(request, response);
         } else {
             if(action.equalsIgnoreCase("modify")){
-                String test=request.getParameter("qte");
-                System.out.println("teeeeeesssssssssssssssssstttttttttttttttttaaaaaa"+test);
+
             }
             if (action.equalsIgnoreCase("buy")) {
                 actionBuyorvalidate="buy";
@@ -138,9 +156,15 @@ doGet(request,response);
     protected void doGet_showproducts_in_cart(HttpServletRequest request, HttpServletResponse response) {
         String page = request.getParameter("page");
         System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk" + page);
-        if (page.equals("addtocart")||page.equals("cart")) {
-
-        int numPro = Integer.parseInt(request.getParameter("id"));
+        String action = request.getParameter("action");
+        if (action == null|| page.equals("addtocart")||page.equals("cart")) {
+            int numPro =0;
+            if (action ==  null) {
+                numPro = Integer.parseInt(request.getParameter("numpr"));
+            } else {
+                numPro = Integer.parseInt(request.getParameter("id"));
+            }
+        
         System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmaaaaaa" + numPro);
         ProduitDAO produitDAO = new ProduitDAO();
 

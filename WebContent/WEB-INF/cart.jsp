@@ -207,16 +207,17 @@
 						  </td>
 						  <td class="">
 
-							  <input type="text" style="height: 40px;width: 90px; margin:0 15px" class="form-control" name="qte"  placeholder="quantite">Quantite
+							  <input type="text" style="height: 40px;width: 90px; margin:0 15px" class="form-control" id="qte" name="qte"  value="${param.qte}" placeholder="quantite">Quantite
 
 						  </td>
-
 							<td class="">
-
-								<a href="${pageContext.request.contextPath }/Commandes?page=modifier&qte=${qt}&action=modify&produit=${produits.numPro}" >
-								Modifier
-								</a>
-
+								<c:out value="${param.name}"/>
+								<a href="${pageContext.request.contextPath }/Commandes?page=modifier&action=modify&produit=${produits.numPro}&qte=<c:out value="${param.name}"/>">Some Shit</a>
+								<!-- <a href="" >
+									Modifier
+								</a> -->
+								<!-- <input type="text" name="name"
+								value="<c:out value="${param.name}"/>" /> -->
 								<button onclick="alert('modifié!!')" class="btn btn-primary text-center"  type="submit">Modifier</button>
 
 							</td>
