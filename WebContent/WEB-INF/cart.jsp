@@ -69,79 +69,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="col-md-4 col-xs-12 col-sm-4">
-				<!-- Cart -->
-				<ul class="top-menu text-right list-inline">
-					<li class="dropdown cart-nav dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
-								class="tf-ion-android-cart"></i>cadie</a>
-						<div class="dropdown-menu cart-dropdown">
-							<!-- Cart Item -->
-							<div class="media">
-								<a class="pull-left" href="#!">
-									<img class="media-object" src="images/shop/cart/cart-1.jpg" alt="image" />
-								</a>
-								<div class="media-body">
-									<h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
-									<div class="cart-price">
-										<span>1 x</span>
-										<span>1250.00</span>
-									</div>
-									<h5><strong>$1200</strong></h5>
-								</div>
-								<a href="#!" class="remove"><i class="tf-ion-close"></i></a>
-							</div><!-- / Cart Item -->
-							<!-- Cart Item -->
-							<div class="media">
-								<a class="pull-left" href="#!">
-									<img class="media-object" src="images/shop/cart/cart-2.jpg" alt="image" />
-								</a>
-								<div class="media-body">
-									<h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
-									<div class="cart-price">
-										<span>1 x</span>
-										<span>1250.00</span>
-									</div>
-									<h5><strong>$1200</strong></h5>
-								</div>
-								<a href="#!" class="remove"><i class="tf-ion-close"></i></a>
-							</div><!-- / Cart Item -->
 
-							<div class="cart-summary">
-								<span>Total</span>
-								<span class="total-price">$1799.00</span>
-							</div>
-							<ul class="text-center cart-buttons">
-								<li><a href="cart.jsp" class="btn btn-small">View Cart</a></li>
-								<li><a href="checkout.jsp" class="btn btn-small btn-solid-border">Checkout</a></li>
-							</ul>
-						</div>
-
-					</li><!-- / Cart -->
-
-					<!-- Search -->
-					<li class="dropdown search dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
-								class="tf-ion-ios-search-strong"></i> Search</a>
-						<ul class="dropdown-menu search-dropdown">
-							<li>
-								<form action="post"><input type="search" class="form-control" placeholder="Search..."></form>
-							</li>
-						</ul>
-					</li><!-- / Search -->
-
-					<!-- Languages -->
-					<li class="commonSelect">
-						<select class="form-control">
-							<option>EN</option>
-							<option>DE</option>
-							<option>FR</option>
-							<option>ES</option>
-						</select>
-					</li><!-- / Languages -->
-
-				</ul><!-- / .nav .navbar-nav .navbar-right -->
-			</div>
 		</div>
 	</div>
 </section><!-- End Top Header Bar -->
@@ -179,11 +107,11 @@
 				  <table class="table">
 					  <thead>
 					  <tr>
-						  <th class="">Item Name</th>
-						  <th class="">Item Price</th>
+						  <th class="">Nom de l'article</th>
+						  <th class="">Prix unitaire</th>
 						  <th class="">Actions</th>
-						  <th class="">Quantit�</th>
-						  <th class="">Modifier</th>
+						  <th class="">Quantite</th>
+						  <th class="">Enregistrer</th>
 					  </tr>
 					  </thead>
 					  <tbody>
@@ -207,7 +135,7 @@
 						  </td>
 						  <td class="">
 
-							  <input type="text" style="height: 40px;width: 90px; margin:0 15px" class="form-control" id="qte" name="qte"  value="${param.qte}" placeholder="quantite">
+							  <input type="number"  min="1" style="height: 40px;width: 90px; margin:0 15px" class="form-control" id="qte" name="qte"  value="${param.qte}" placeholder="quantite" required>
 
 						  </td>
 							<td class="">
@@ -218,7 +146,7 @@
 								</a> -->
 								<!-- <input type="text" name="name"
 								value="<c:out value="${param.name}"/>" /> -->
-								<button onclick="alert('modifié!!')" class="btn btn-primary text-center"  type="submit">Modifier</button>
+								<button onclick="alert('Commande enregistree.')" class="btn btn-primary text-center"  type="submit">Enregistrer</button>
 
 							</td>
 						  <td class="">
@@ -244,30 +172,7 @@
 </div>
 
 
-<footer class="footer section text-center">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
 
-				<ul class="footer-menu text-uppercase">
-					<li>
-						<a href="contact.jsp">CONTACT</a>
-					</li>
-					<li>
-						<a href="shop.jsp">SHOP</a>
-					</li>
-					<li>
-						<a href="pricing.jsp">Pricing</a>
-					</li>
-					<li>
-						<a href="contact.jsp">PRIVACY POLICY</a>
-					</li>
-				</ul>
-				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by heart</p>
-			</div>
-		</div>
-	</div>
-</footer>
 
     <!-- 
     Essential Scripts

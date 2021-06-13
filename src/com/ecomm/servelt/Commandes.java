@@ -12,14 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.*;
 
 import com.ecomm.DAO.CommandeDAO;
 import com.ecomm.DAO.ProduitDAO;
-import com.ecomm.DAO.UtilisateurDAO;
 import com.ecomm.javaBeans.Produit;
 import com.ecomm.javaBeans.Utilisateur;
-import com.mysql.cj.util.Util;
 
 @WebServlet("/Commandes")
 public class Commandes extends HttpServlet {
@@ -181,12 +178,9 @@ doGet(request,response);
         System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmaaaaaa" + numPro);
         ProduitDAO produitDAO = new ProduitDAO();
 
-        CommandeDAO commandesDao = new CommandeDAO();
         try {
             Produit produit = produitDAO.getProduitByNum(numPro);
             HttpSession session = request.getSession();
-            Utilisateur utilisateur = (Utilisateur) session.getAttribute("user");
-            int numUtil = utilisateur.getNumUtil();
             int qte = 1;
             System.out.println(produit.getStock());
             if (qte > produit.getStock()) {
@@ -231,7 +225,6 @@ doGet(request,response);
 
     protected void doGet_Buy(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Produit produit = new Produit();
         HttpSession session = request.getSession();
 
         if (session.getAttribute("cart") == null) {
@@ -263,19 +256,5 @@ doGet(request,response);
             }
         }
         return -1;
-    }
-    private void validercomande(Produit produit, int numUtil, int qte){
-        CommandeDAO commandesDao=new CommandeDAO();
-        try{
-            commandesDao.addCommande(produit,numUtil,qte);
-            if(commandesDao.addCommande(produit,numUtil,qte)>0){
-                System.out.println("commande aded succesfuly");
-            }
-            else {
-                System.out.println("commande not aded succesfuly!!!!!!!");
-            }
-        }catch (Exception ex){
-            System.out.println(ex.getMessage());
-        }
     }
 }

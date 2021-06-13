@@ -71,77 +71,6 @@
 					</a>
 				</div>
 			</div>
-			<div class="col-md-4 col-xs-12 col-sm-4">
-				<!-- Cart -->
-				<ul class="top-menu text-right list-inline">
-					<li class="dropdown cart-nav dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Cart</a>
-						<div class="dropdown-menu cart-dropdown">
-							<!-- Cart Item -->
-							<div class="media">
-								<a class="pull-left" href="#!">
-									<img class="media-object" src="images/shop/cart/cart-1.jpg" alt="image" />
-								</a>
-								<div class="media-body">
-									<h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
-									<div class="cart-price">
-										<span>1 x</span>
-										<span>1250.00</span>
-									</div>
-									<h5><strong>$1200</strong></h5>
-								</div>
-								<a href="#!" class="remove"><i class="tf-ion-close"></i></a>
-							</div><!-- / Cart Item -->
-							<!-- Cart Item -->
-							<div class="media">
-								<a class="pull-left" href="#!">
-									<img class="media-object" src="images/shop/cart/cart-2.jpg" alt="image" />
-								</a>
-								<div class="media-body">
-									<h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
-									<div class="cart-price">
-										<span>1 x</span>
-										<span>1250.00</span>
-									</div>
-									<h5><strong>$1200</strong></h5>
-								</div>
-								<a href="#!" class="remove"><i class="tf-ion-close"></i></a>
-							</div><!-- / Cart Item -->
-
-							<div class="cart-summary">
-								<span>Total</span>
-								<span class="total-price">$1799.00</span>
-							</div>
-							<ul class="text-center cart-buttons">
-								<li><a href="cart.jsp" class="btn btn-small">View Cart</a></li>
-								<li><a href="checkout.jsp" class="btn btn-small btn-solid-border">Checkout</a></li>
-							</ul>
-						</div>
-
-					</li><!-- / Cart -->
-
-					<!-- Search -->
-					<li class="dropdown search dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
-						<ul class="dropdown-menu search-dropdown">
-							<li>
-								<form action="post"><input type="search" class="form-control" placeholder="Search..."></form>
-							</li>
-						</ul>
-					</li><!-- / Search -->
-
-					<!-- Languages -->
-					<li class="commonSelect">
-						<select class="form-control">
-							<option>EN</option>
-							<option>DE</option>
-							<option>FR</option>
-							<option>ES</option>
-						</select>
-					</li><!-- / Languages -->
-
-				</ul><!-- / .nav .navbar-nav .navbar-right -->
-			</div>
 		</div>
 	</div>
 </section><!-- End Top Header Bar -->
@@ -157,7 +86,7 @@
         <div class="col-lg-8 text-center">
           <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUITS</p>
           <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Bienvenue dans <br> votre boutique.</h1>
-          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="shop.jsp">Achetez</a>
+          <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn">Achetez</p>
         </div>
       </div>
     </div>
@@ -250,57 +179,6 @@
 
 	</div>
 </section>
-
-
-<!--
-Start Call To Action
-==================================== -->
-<section class="call-to-action bg-gray section">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<div class="title">
-					<h2>Abonnez-vous maintenant!</h2>
-					<p>Ecommerce java EE application <br> facilis numquam impedit ut sequi. Minus facilis vitae excepturi sit laboriosam.</p>
-				</div>
-				<div class="col-lg-6 col-md-offset-3">
-				    <div class="input-group subscription-form">
-				      <input type="text" class="form-control" placeholder="Enter Your Email Address">
-				      <span class="input-group-btn">
-				        <button class="btn btn-main" type="button">Abonnez-vous maintenant!</button>
-				      </span>
-				    </div><!-- /input-group -->
-			  </div><!-- /.col-lg-6 -->
-
-			</div>
-		</div> 		<!-- End row -->
-	</div>   	<!-- End container -->
-</section>   <!-- End section -->
-
-
-
-<footer class="footer section text-center">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-
-				<ul class="footer-menu text-uppercase">
-					<li>
-						<a href="contact.jsp">CONTACT</a>
-					</li>
-
-					<li>
-						<a href="pricing.jsp">Prix</a>
-					</li>
-					<li>
-						<a href="contact.jsp">PRIVACY POLICY</a>
-					</li>
-				</ul>
-				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by heart</p>
-			</div>
-		</div>
-	</div>
-</footer>
 
     <!-- 
     Essential Scripts

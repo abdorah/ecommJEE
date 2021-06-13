@@ -21,8 +21,6 @@ public class Produits extends HttpServlet {
         List<Produit> produits=null;
         ProduitDAO ProduitsDao=new ProduitDAO();
         try {
-            ServletContext servletcontext = getServletContext();
-
             HttpSession session=request.getSession();
             String familleName= session.getAttribute("familleName").toString();
             System.out.println("bbbbbbbbbbbbbbbbbbbbbbb"+familleName);

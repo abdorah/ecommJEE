@@ -59,7 +59,6 @@
 
             </div>
           </form>
-          <p class="mt-20">New in this site ?<a href="/signin.jsp"> Cree un compte</a></p>
         </div>
       </div>
     </div>
