@@ -64,7 +64,7 @@
 								font-family="AustinBold, Austin" font-weight="bold">
 								<g id="Group" transform="translate(-108.000000, -297.000000)" fill="#000000">
 									<text id="AVIATO">
-										<tspan x="108.94" y="325">Shop</tspan>
+										<tspan x="108.94" y="325">Magasin</tspan>
 									</text>
 								</g>
 							</g>
