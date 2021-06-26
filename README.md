@@ -47,3 +47,7 @@ Application JavaEE qui représente un site web e-commerce.
 * l'administrateur peut consulter la liste des commandes
 
 ![p6](resources/assets/p6.png)
+
+>### Architecture de la base de données
+
+![db](resources/database.png)
